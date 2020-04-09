@@ -1,0 +1,13 @@
+---
+-   hosts: oaisim-enb
+    become: yes
+    remote_user: root
+    vars:
+        COPY_RIGHT: 'ciromacedo@gmail.com'
+    tasks:
+        - name : Remove all old implantation
+          become: yes
+          ignore_errors: yes
+          shell:  |
+              sudo apt-get update
+ 
