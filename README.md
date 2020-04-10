@@ -27,5 +27,5 @@ After installation check if the installed version is 2.7 or higher using the fol
 ```
 ansible --version
 ```
-The expected result is:
+the expected result should be equivalent to that shown in the image below:
 ![](images/ansible_result_installation.PNG)
