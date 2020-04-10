@@ -49,7 +49,7 @@ the result should be equivalent to that shown in the image below:
 
 #### Tes Ansible Connection (Operator Machine / enB Machine)
 
-On the <i>operator's machine</i> it will be necessary to clone this project to test the connection throught <i>Ansible</>. To be possible, it is necessary to have **GIT** properly installed. You can check this with the following command:
+On the <i>operator's machine</i> it will be necessary to clone this project to test the connection throught <i>Ansible</i>. To be possible, it is necessary to have **GIT** properly installed. You can check this with the following command:
 ```
 git --version
 ```
@@ -57,5 +57,13 @@ the expected result should be something similar to:
 ```
 git version x.x.x
 ```  
-  
+if GIT is not installed, just run the following command:
+```
+sudo apt-get install git
+```
+ 
+ Then choose a directory and clone the **oaisim-with-ansible project**:
 
+```
+git clone xxx
+```
