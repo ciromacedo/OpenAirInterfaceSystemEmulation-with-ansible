@@ -8,3 +8,6 @@ This project aims to build a playbook for implementing the elements that make up
 We assume that the <b>all machines are connected to the internet</b> and <i>see each other</i>.
 ## Installation Guide
 The first thing to do, is configure the <i>operator machine</i>.
+
+### Ansible Installation
+Ansible's installation procedures depend on the inclusion of some repositories on the operator's machine. Depending on the distribution uses the commands for the inclusion of these repositories they can change, for more information see [this page] (https://docs.ansible.com/ansible/latest/installation_guide/intro_installation.html#installing-the-control-node). The next steps works to <b>linux Ubuntu 18.04+ LTS</b>
