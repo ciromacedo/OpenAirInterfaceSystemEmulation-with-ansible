@@ -9,5 +9,5 @@
           become: yes
           ignore_errors: yes
           shell:  |
-              sudo apt-get update
+              echo 'funcionou!'
  
