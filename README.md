@@ -39,4 +39,4 @@ ssh-keygen -t ecdsa -b 521
 ```
 I recommend that you use  <i>empty passphrase</i>, the result should be equivalent to that shown in the image below:
 
-![](images/ansible_result_installation.PNG)
+![](images/ssh_keys_gen.PNG)
