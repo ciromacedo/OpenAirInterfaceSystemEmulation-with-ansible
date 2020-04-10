@@ -37,4 +37,6 @@ After installing ansible on the operator's machine, the next step is to configur
 ```
 ssh-keygen -t ecdsa -b 521
 ```
-recommend using  <i>empty passphrase</i>
+I recommend that you use  <i>empty passphrase</i>, the result should be equivalent to that shown in the image below:
+
+![](images/ansible_result_installation.PNG)
