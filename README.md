@@ -33,7 +33,7 @@ the expected result should be equivalent to that shown in the image below:
 ### Check Ansible Connection (Operator Machine / enB Machine)
 After installing ansible on the operator's machine, the next step is to configure the connection between the operator's machine and the other machines involved in the OpenAir deployment process. For the correct operation, Ansible needs to have full access to the other machines involved, this is done through the exchange of <i>SSHKeys</i> process:
 
-1. Generate an ssh key from the operator's machine using the following command:
+Generate an ssh key from the operator's machine using the following command:
 ```
 ssh-keygen -t ecdsa -b 521
 ```
@@ -46,3 +46,16 @@ ssh-copy-id -i ~/.ssh/id_ecdsa.pub <user>@<enB-host>
 ```
 the result should be equivalent to that shown in the image below:
 ![](images/ssh_copy_keys.PNG)
+
+#### Tes Ansible Connection (Operator Machine / enB Machine)
+
+On the <i>operator's machine</i> it will be necessary to clone this project to test the connection throught <i>Ansible</>. To be possible, it is necessary to have **GIT** properly installed. You can check this with the following command:
+```
+git --version
+```
+the expected result should be something similar to:
+```
+git version x.x.x
+```  
+  
+
