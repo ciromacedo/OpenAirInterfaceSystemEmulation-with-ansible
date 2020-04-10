@@ -44,3 +44,5 @@ This key will be used by <i>Ansible</i> when running the deployment playbooks, s
 ```
 ssh-copy-id -i ~/.ssh/id_ecdsa.pub <user>@<enB-host>
 ```
+the result should be equivalent to that shown in the image below:
+![](images/ssh_copy_keys.PNG)
