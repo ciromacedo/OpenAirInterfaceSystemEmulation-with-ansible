@@ -20,4 +20,4 @@
           become: true
           shell:  git clone --branch v1.0.0 https://gitlab.eurecom.fr/oai/openairinterface5g/ 
           args:
-          chdir: ansible_enB/
+            chdir: ansible_enB/
