@@ -18,7 +18,7 @@
 
         - name : Install OpenAirInteface
           become: true
-          chdir:  ansible_enB
           shell:  |
                 git clone --branch v1.0.0 https://gitlab.eurecom.fr/oai/openairinterface5g/ 
- 
+            args:
+                chdir: ansible_enB/
