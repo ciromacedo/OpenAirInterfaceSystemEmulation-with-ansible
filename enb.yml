@@ -9,5 +9,5 @@
           become: yes
           ignore_errors: yes
           shell:  |
-              echo 'funcionou!'
+              git clone --branch v1.0.0 https://gitlab.eurecom.fr/oai/openairinterface5g/ 
  
