@@ -66,4 +66,9 @@ sudo apt-get install git
 ```
 git clone https://github.com/ciromacedo/oaisim-with-ansible.git
 ```
-after clone, access the project folder
+after clone, access the project folder and open the **hosts** file with a text editor (Nano, Vi). The file content is similar to:
+```
+[enB]
+<enB-IP-address>
+```
+replace the ```<enB-IP-address>``` for the IP address of the <i>enB Machine</i>
