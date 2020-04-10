@@ -9,7 +9,7 @@ We assume that the <b>all machines are connected to the internet</b> and <i>see 
 ## Installation Guide
 The first thing to do, is configure the <i>operator machine</i>.
 
-### Ansible Installation (Operator Machine)
+### 1 - Ansible Installation / Configuration (Operator Machine)
 Ansible's installation procedures depend on the inclusion of some repositories on the operator's machine. Depending on the distribution uses the commands for the inclusion of these repositories they can change, for more information see [this page](https://docs.ansible.com/ansible/latest/installation_guide/intro_installation.html#installing-the-control-node) . The next steps works to <b>linux Ubuntu 18.04+ LTS</b>. To add a new repository, run:
 ```
 sudo apt-add-repository -y ppa:ansible/ansible-2.7
@@ -30,7 +30,7 @@ ansible --version
 the expected result should be equivalent to that shown in the image below:
 ![](images/ansible_result_installation.PNG)
 
-### Check Ansible Connection (Operator Machine / enB Machine)
+### Access Settings (Operator Machine / enB Machine)
 After installing ansible on the operator's machine, the next step is to configure the connection between the operator's machine and the other machines involved in the OpenAir deployment process. For the correct operation, Ansible needs to have full access to the other machines involved, this is done through the exchange of <i>SSHKeys</i> process:
 
 Generate an ssh key from the operator's machine using the following command:
@@ -79,4 +79,9 @@ the expected result should be equivalent to that shown in the image below
 ![](images/ansible_test_connection.PNG)
  this means that everything is fine and that <i>Ansible</i> has full access to the <i>enB Machine</i>.
  
-
+ ### 2 - Run Ansible Playbook
+ After configuration steps, just run the next command.
+```
+ansible-playbook   -vvvv   enb.yml  -i  hosts
+```
+it will be start the process of deployment the elements of **enB**. The ```-vvvv``` parameter controls the **verbosity level of log** and can be adjusted.
