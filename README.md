@@ -47,7 +47,7 @@ ssh-copy-id -i ~/.ssh/id_ecdsa.pub <user>@<enB-host>
 the result should be equivalent to that shown in the image below:
 ![](images/ssh_copy_keys.PNG)
 
-#### Tes Ansible Connection (Operator Machine / enB Machine)
+#### Test Ansible Connection (Operator Machine / enB Machine)
 
 On the <i>operator's machine</i> it will be necessary to clone this project to test the connection throught <i>Ansible</i>. To be possible, it is necessary to have **GIT** properly installed. You can check this with the following command:
 ```
@@ -71,4 +71,12 @@ after clone, access the project folder and open the **hosts** file with a text e
 [enB]
 <enB-IP-address>
 ```
-replace the ```<enB-IP-address>``` for the IP address of the <i>enB Machine</i>
+replace the ```<enB-IP-address>``` for the IP address of the <i>enB Machine</i>. Save and close the file, and inside the project base directory run the next command:
+```
+ansible -i ./hosts -m ping all -u root
+```
+the expected result should be equivalent to that shown in the image below
+![](images/test_ansible_connection.PNG)
+ this means that everything is fine and that <i>Ansible</i> has full access to the <i>enB Machine</i>.
+ 
+
