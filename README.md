@@ -29,3 +29,12 @@ ansible --version
 ```
 the expected result should be equivalent to that shown in the image below:
 ![](images/ansible_result_installation.PNG)
+
+### Check Ansible Connection (Operator Machine / enB Machine)
+After installing ansible on the operator's machine, the next step is to configure the connection between the operator's machine and the other machines involved in the OpenAir deployment process. For the correct operation, Ansible needs to have full access to the other machines involved, this is done through the exchange of <i>SSHKeys</i> process:
+
+1. Generate an ssh key from the operator's machine using the following command:
+```
+ssh-keygen -t ecdsa -b 521
+```
+recommend using  <i>empty passphrase</i>
