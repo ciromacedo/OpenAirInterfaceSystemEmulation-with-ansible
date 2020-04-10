@@ -5,4 +5,6 @@ This project aims to build a playbook for implementing the elements that make up
 2. A machine for installing the eNB (and if applicable, to simulate the UE's).
 3. One machine for installing the EPC core.
 
+We assume that the <b>all machines are connected to the internet</b> and <i>see each other</i>.
 ## Installation Guide
+The first thing to do, is configure the <i>operator machine</i>.
