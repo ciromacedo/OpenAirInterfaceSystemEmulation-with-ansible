@@ -63,7 +63,7 @@ sudo apt-get install git
 ```
  
  Then choose a directory and clone the **oaisim-with-ansible project**:
-
 ```
-git clone xxx
+git clone https://github.com/ciromacedo/oaisim-with-ansible.git
 ```
+after clone, access the project folder
