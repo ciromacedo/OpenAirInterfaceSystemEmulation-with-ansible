@@ -6,8 +6,19 @@
         COPY_RIGHT: 'ciromacedo@gmail.com'
     tasks:
         - name : Remove all old implantation
-          become: yes
-          ignore_errors: yes
+          become: true
+          ignore_errors: true
           shell:  |
-              git clone --branch v1.0.0 https://gitlab.eurecom.fr/oai/openairinterface5g/ 
+                sudo rm -rf ansible_enB
+
+        - name : Create Directory
+          become: true
+          shell:  |
+                sudo mkdir ansible_enB
+
+        - name : Install OpenAirInteface
+          become: true
+          chdir:  ansible_enB
+          shell:  |
+                git clone --branch v1.0.0 https://gitlab.eurecom.fr/oai/openairinterface5g/ 
  
