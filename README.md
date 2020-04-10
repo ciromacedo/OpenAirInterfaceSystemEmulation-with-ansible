@@ -76,7 +76,7 @@ replace the ```<enB-IP-address>``` for the IP address of the <i>enB Machine</i>.
 ansible -i ./hosts -m ping all -u root
 ```
 the expected result should be equivalent to that shown in the image below
-![](images/test_ansible_connection.PNG)
+![](images/ansible_test_connection.PNG)
  this means that everything is fine and that <i>Ansible</i> has full access to the <i>enB Machine</i>.
  
 
