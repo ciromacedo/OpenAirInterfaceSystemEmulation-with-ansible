@@ -352,22 +352,12 @@
           shell:  |
                 sudo ifconfig lo: 127.0.0.2 netmask 255.0.0.0 up
 
-        - name : Build enB 1/2
-          shell: source oaienv 
+        - name : Build enB
+          shell: source oaienv && ./cmake_targets/build_oai --eNB -t ETHERNET -c -I --mu
           args:
-            chdir: "{{ BASE_DIR_INSTALL_ENB }}/openairinterface5g/"
+            chdir: "{{ BASE_DIR_INSTALL_ENB }}/openairinterface5g"
 
-        - name : Build enB 2/2
-          shell: ./build_oai --eNB -t ETHERNET -c -I --mu
+        - name : Build UE
+          shell: source oaienv && ./cmake_targets/build_oai --UE  -x -t ETHERNET -c -I --musim
           args:
-            chdir: "{{ BASE_DIR_INSTALL_ENB }}/openairinterface5g/cmake_targerts/"
-
-        - name : Build UE 1/2
-          shell: source oaienv 
-          args:
-            chdir: "{{ BASE_DIR_INSTALL_UE }}/openairinterface5g/"
-
-        - name : Build UE 2/2
-          shell: ./build_oai --UE  -x -t ETHERNET -c -I --musim
-          args:
-            chdir: "{{ BASE_DIR_INSTALL_UE }}/openairinterface5g/cmake_targerts/"
+            chdir: "{{ BASE_DIR_INSTALL_UE }}/openairinterface5g"
