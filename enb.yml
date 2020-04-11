@@ -8,20 +8,17 @@
         BASE_DIR_INSTALL_UE : "ansible_ue"
     tasks:
         - name : Remove all old implantation
-          become: true
           ignore_errors: true
           shell:  |
                 sudo rm -rf {{ BASE_DIR_INSTALL_ENB }}
                 sudo rm -rf {{ BASE_DIR_INSTALL_UE }}
 
         - name : Create enB Directory
-          become: true
           shell:  |
                 sudo mkdir {{ BASE_DIR_INSTALL_ENB }}
                 sudo mkdir {{ BASE_DIR_INSTALL_UE }}
 
-        - name : Install enB
-          become: true
+        - name : Clone openairinterface5g repository - https://gitlab.eurecom.fr/oai/openairinterface5g/
           shell:  git clone --branch v1.0.0 https://gitlab.eurecom.fr/oai/openairinterface5g/ 
           args:
             chdir: "{{ BASE_DIR_INSTALL_ENB }}" 
@@ -31,9 +28,9 @@
           args:
             chdir: "{{ BASE_DIR_INSTALL_ENB }}" 
 
-        - name: Build docker file to create certs
+        - name: Config enB - rcc.band7.tm1.nfapi.conf
           copy:
-            dest: "/{{ BASE_DIR_INSTALL_ENB }}/openairinterface5g/ci-scripts/conf_files/rcc.band7.tm1.nfapi.conf"
+            dest: "{{ BASE_DIR_INSTALL_ENB }}/openairinterface5g/ci-scripts/conf_files/rcc.band7.tm1.nfapi.conf"
             content: |
                 Active_eNBs = ( "eNB-Eurecom-LTEBox");
                 # Asn1_verbosity, choice in: none, info, annoying
