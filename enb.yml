@@ -24,12 +24,12 @@
           become: true
           shell:  git clone --branch v1.0.0 https://gitlab.eurecom.fr/oai/openairinterface5g/ 
           args:
-            chdir: {{ BASE_DIR_INSTALL_ENB }}/
+            chdir: {{ BASE_DIR_INSTALL_ENB }} 
 
         - name : Install enB - 1º Remove rcc.band7.tm1.nfapi.conf file
           shell:  rm openairinterface5g/ci-scripts/conf_files/rcc.band7.tm1.nfapi.conf 
           args:
-            chdir: {{ BASE_DIR_INSTALL_ENB }}/
+            chdir: {{ BASE_DIR_INSTALL_ENB }} 
 
         - name: Build docker file to create certs
           copy:
