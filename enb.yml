@@ -86,7 +86,6 @@
                     }		      
                 );
 
-
         - name : Install enB - Remove rcc.band7.tm1.nfapi.conf file
           shell:  rm openairinterface5g/ci-scripts/conf_files/rcc.band7.tm1.nfapi.conf 
           args:
