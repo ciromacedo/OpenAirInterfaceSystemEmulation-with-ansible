@@ -356,8 +356,10 @@
           shell: source oaienv && ./cmake_targets/build_oai --eNB -t ETHERNET -c -I --mu
           args:
             chdir: "{{ BASE_DIR_INSTALL_ENB }}/openairinterface5g"
+            executable: /bin/bash
 
         - name : Build UE
           shell: source oaienv && ./cmake_targets/build_oai --UE  -x -t ETHERNET -c -I --musim
           args:
             chdir: "{{ BASE_DIR_INSTALL_UE }}/openairinterface5g"
+            executable: /bin/bash
