@@ -7,13 +7,19 @@
         BASE_DIR_INSTALL_ENB : "ansible_enB"
         BASE_DIR_INSTALL_UE : "ansible_ue"
     tasks:
+        - fail: 
+            msg: "'physical_network_interface' not found, this parameter is required!"
+          when: physical_network_interface == ''
+          
         - name : Remove all old implantation
+          become: true
           ignore_errors: true
           shell:  |
                 sudo rm -rf {{ BASE_DIR_INSTALL_ENB }}
                 sudo rm -rf {{ BASE_DIR_INSTALL_UE }}
 
         - name : Create enB Directory
+          become: true
           shell:  |
                 sudo mkdir {{ BASE_DIR_INSTALL_ENB }}
                 sudo mkdir {{ BASE_DIR_INSTALL_UE }}
@@ -22,6 +28,10 @@
           shell:  git clone --branch v1.0.0 https://gitlab.eurecom.fr/oai/openairinterface5g/ 
           args:
             chdir: "{{ BASE_DIR_INSTALL_ENB }}" 
+
+        - name : Copy enB code to UE
+          become: true
+          shell:  cp -r {{ BASE_DIR_INSTALL_ENB }}/openairinterface5g/ {{ BASE_DIR_INSTALL_UE }}/
 
         - name : Install enB - 1º Remove rcc.band7.tm1.nfapi.conf file
           shell:  rm openairinterface5g/ci-scripts/conf_files/rcc.band7.tm1.nfapi.conf 
@@ -215,12 +225,12 @@
 
                     NETWORK_INTERFACES :
                     {
-                        ENB_INTERFACE_NAME_FOR_S1_MME            = "ens3";
-                        ENB_IPV4_ADDRESS_FOR_S1_MME              = "CI_ENB_IP_ADDR";
-                        ENB_INTERFACE_NAME_FOR_S1U               = "ens3";
-                        ENB_IPV4_ADDRESS_FOR_S1U                 = "CI_ENB_IP_ADDR";
+                        ENB_INTERFACE_NAME_FOR_S1_MME            = "{{ physical_network_interface }}";
+                        ENB_IPV4_ADDRESS_FOR_S1_MME              = "{{ ansible_default_ipv4.address }}";
+                        ENB_INTERFACE_NAME_FOR_S1U               = "{{ physical_network_interface }}";
+                        ENB_IPV4_ADDRESS_FOR_S1U                 = "{{ ansible_default_ipv4.address }}";
                         ENB_PORT_FOR_S1U                         = 2152; # Spec 2152
-                        ENB_IPV4_ADDRESS_FOR_X2C                 = "CI_ENB_IP_ADDR";
+                        ENB_IPV4_ADDRESS_FOR_X2C                 = "{{ ansible_default_ipv4.address }}";
                         ENB_PORT_FOR_X2C                         = 36422; # Spec 36422
                         
                     };
@@ -242,9 +252,24 @@
                         }  
                 );
 
+                RUs = (
+                    {
+                        local_rf       = "yes"
+                        nb_tx          = 1
+                        nb_rx          = 1
+                        att_tx         = 20
+                        att_rx         = 0;
+                        bands          = [38];
+                        max_pdschReferenceSignalPower = -23;
+                        max_rxgain                    = 116;
+                        eNB_instances  = [0];
+                    }
+                );
+
+
                 THREAD_STRUCT = (
                 {
-                    #three TESTE config for level of parallelism "PARALLEL_SINGLE_THREAD", "PARALLEL_RU_L1_SPLIT", or "PARALLEL_RU_L1_TRX_SPLIT"
+                    #three config for level of parallelism "PARALLEL_SINGLE_THREAD", "PARALLEL_RU_L1_SPLIT", or "PARALLEL_RU_L1_TRX_SPLIT"
                     parallel_config    = "PARALLEL_RU_L1_TRX_SPLIT";
                     #two option for worker "WORKER_DISABLE" or "WORKER_ENABLE"
                     worker_config      = "WORKER_ENABLE";
