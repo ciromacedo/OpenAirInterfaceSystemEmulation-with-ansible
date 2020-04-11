@@ -361,3 +361,13 @@
           shell: ./build_oai --eNB -t ETHERNET -c -I --mu
           args:
             chdir: "{{ BASE_DIR_INSTALL_ENB }}/openairinterface5g/cmake_targerts"
+
+        - name : Build UE 1/2
+          shell: source oaienv 
+          args:
+            chdir: "{{ BASE_DIR_INSTALL_UE }}/openairinterface5g"
+
+        - name : Build UE 2/2
+          shell: ./build_oai --UE  -x -t ETHERNET -c -I --musim
+          args:
+            chdir: "{{ BASE_DIR_INSTALL_UE }}/openairinterface5g/cmake_targerts"
