@@ -47,6 +47,14 @@ ssh-copy-id -i ~/.ssh/id_ecdsa.pub <user>@<enB-host>
 the result should be equivalent to that shown in the image below:
 ![](images/ssh_copy_keys.PNG)
 
+after copy ssh key, access the enb machine ``` ssh <user>@<enB-host> ``` and run the following commands:
+```
+ apt install python-minimal
+ sudo apt update
+ sudo apt-get install linux-image-lowlatency linux-headers-lowlatency -y
+```
+the last command install **lowlattency kernel**, after execution a boot menu is display, <i>choose the fisrt option</i>. This is part of kernel requirements for RAN, more information access [this link](https://gitlab.eurecom.fr/oai/openairinterface5g/wikis/OpenAirKernelMainSetup).
+
 #### Test Ansible Connection (Operator Machine / enB Machine)
 
 On the <i>operator's machine</i> it will be necessary to clone this project to test the connection throught <i>Ansible</i>. To be possible, it is necessary to have **GIT** properly installed. You can check this with the following command:
