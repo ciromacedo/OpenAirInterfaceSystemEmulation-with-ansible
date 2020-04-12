@@ -25,6 +25,7 @@
                 sudo mkdir {{ BASE_DIR_INSTALL_UE }}
 
         - name : Remove grub default file and blacklist.conf
+          ignore_errors: true
           shell:  | 
                 rm /etc/default/grub 
                 rm /etc/modprobe.d/blacklist.conf 
@@ -132,7 +133,7 @@
                 # Uncomment to get a beep at grub start
                 #GRUB_INIT_TUNE="480 440 1"
 
-        - name : Install cpufrequtils
+        - name  : Install cpufrequtils
           become: true
           shell:  |
                 sudo apt-get install cpufrequtils
@@ -143,21 +144,21 @@
             content: |
                 GOVERNOR="performance"
 
-        - name : Update grub
+        - name  : Update grub
           shell: | 
              update-grub
              sudo update-rc.d ondemand disable
              sudo /etc/init.d/cpufrequtils restart
 
-        - name : Clone openairinterface5g repository - https://gitlab.eurecom.fr/oai/openairinterface5g/
+        - name  : Clone openairinterface5g repository - https://gitlab.eurecom.fr/oai/openairinterface5g/
           shell:  git clone --branch v1.0.0 https://gitlab.eurecom.fr/oai/openairinterface5g/ 
           args:
             chdir: "{{ BASE_DIR_INSTALL_ENB }}" 
 
-        - name : Copy enB code to UE
+        - name  : Copy enB code to UE
           shell:  cp -r {{ BASE_DIR_INSTALL_ENB }}/openairinterface5g/ {{ BASE_DIR_INSTALL_UE }}/
 
-        - name : Install UE - Remove ue.nfapi.conf file
+        - name  : Install UE - Remove ue.nfapi.conf file
           shell:  rm openairinterface5g/ci-scripts/conf_files/ue.nfapi.conf 
           args:
             chdir: "{{ BASE_DIR_INSTALL_UE }}" 
