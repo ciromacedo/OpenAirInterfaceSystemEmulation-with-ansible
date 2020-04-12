@@ -27,7 +27,7 @@
         - name : Install low latency kernel
           become: true
           shell:  |
-                apt-get uptade
+                sudo apt uptade
                 sudo apt-get install linux-image-lowlatency linux-headers-lowlatency -y
 
         - name : Remove grub default file and blacklist.conf
