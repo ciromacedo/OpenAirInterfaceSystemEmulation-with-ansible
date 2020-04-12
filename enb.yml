@@ -24,12 +24,6 @@
                 sudo mkdir {{ BASE_DIR_INSTALL_ENB }}
                 sudo mkdir {{ BASE_DIR_INSTALL_UE }}
 
-        - name : Install low latency kernel
-          become: true
-          shell:  |
-                sudo apt uptade
-                sudo apt-get install linux-image-lowlatency linux-headers-lowlatency -y
-
         - name : Remove grub default file and blacklist.conf
           shell:  | 
                 rm /etc/default/grub 
