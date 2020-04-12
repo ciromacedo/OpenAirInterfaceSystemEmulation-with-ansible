@@ -136,7 +136,7 @@
         - name  : Install cpufrequtils
           become: true
           shell:  |
-                sudo apt-get install cpufrequtils
+                sudo apt-get install cpufrequtils -y
 
         - name  : Generate new cpufrequtils file
           copy:
