@@ -11,13 +11,13 @@
             msg: "'physical_network_interface' not found, this parameter is required!"
           when: physical_network_interface == ''
           
-        - name : Install lowlatency kerel
+        - name : Install lowlatency kernel
           become: true
           shell:  |
                 sudo apt update
                 sudo apt-get  -y install linux-image-lowlatency linux-headers-lowlatency
 
-          - name : Remove all old implantation
+        - name : Remove all old implantation
           become: true
           ignore_errors: true
           shell:  |
