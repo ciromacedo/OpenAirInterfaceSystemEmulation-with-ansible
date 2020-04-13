@@ -92,6 +92,6 @@ the expected result should be equivalent to that shown in the image below
  ### 2 - Run Ansible Playbook
  After configuration steps, just run the next command.
 ```
-ansible-playbook   -vvvv   enb.yml  -i  hosts
+ansible-playbook   -vvvv   enb.yml  -i  hosts -e "physical_network_interface=eth0"
 ```
-it will be start the process of deployment the elements of **enB**. The ```-vvvv``` parameter controls the **verbosity level of log** and can be adjusted.
+it will be start the process of deployment the elements of **enB**. The ```-vvvv``` parameter controls the **verbosity level of log** and can be adjusted. The parameter ``` -e ``` enables the possibility of passing custom parameters to playbook, in this case, we need to pass **_the physical network interface name_** ``` "physical_network_interface=eth0" ```
