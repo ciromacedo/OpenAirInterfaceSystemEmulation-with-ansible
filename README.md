@@ -49,11 +49,9 @@ the result should be equivalent to that shown in the image below:
 
 after copy ssh key, access the enb machine ``` ssh <user>@<enB-host> ``` and run the following commands:
 ```
- apt install python-minimal
- sudo apt update
- sudo apt-get  -y install linux-image-lowlatency linux-headers-lowlatency
+ apt install python-minimal -y
 ```
-the last command install **lowlattency kernel**, after execution a boot menu is display, <i>choose the fisrt option</i>. This is part of kernel requirements for RAN, more information access [this link](https://gitlab.eurecom.fr/oai/openairinterface5g/wikis/OpenAirKernelMainSetup).
+the last command install **python minimal**. This package contains the interpreter and some essential modules. It is used by Ansible for same basic tasks.
 
 #### Test Ansible Connection (Operator Machine / enB Machine)
 
