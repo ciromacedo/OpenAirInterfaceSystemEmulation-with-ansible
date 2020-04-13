@@ -51,7 +51,7 @@ after copy ssh key, access the enb machine ``` ssh <user>@<enB-host> ``` and run
 ```
  apt install python-minimal
  sudo apt update
- sudo apt-get install linux-image-lowlatency linux-headers-lowlatency -y
+ sudo apt-get  -y install linux-image-lowlatency linux-headers-lowlatency
 ```
 the last command install **lowlattency kernel**, after execution a boot menu is display, <i>choose the fisrt option</i>. This is part of kernel requirements for RAN, more information access [this link](https://gitlab.eurecom.fr/oai/openairinterface5g/wikis/OpenAirKernelMainSetup).
 
