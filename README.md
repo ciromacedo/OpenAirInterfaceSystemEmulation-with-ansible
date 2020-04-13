@@ -53,6 +53,10 @@ after copy ssh key, access the enb machine ``` ssh <user>@<enB-host> ``` and run
 ```
 the last command install **python minimal**. This package contains the interpreter and some essential modules. It is used by Ansible for same basic tasks.
 
+After install <i>python minimal</i>, we need get some information about **physical network interface** of the machine. To do this, run ```ifconfig``` and take note the **_physucal network interface name_** display in the next figure.
+![](images/if_config.PNG)
+this information will be necessary when executing the deployment playbook.
+
 #### Test Ansible Connection (Operator Machine / enB Machine)
 
 On the <i>operator's machine</i> it will be necessary to clone this project to test the connection throught <i>Ansible</i>. To be possible, it is necessary to have **GIT** properly installed. You can check this with the following command:
