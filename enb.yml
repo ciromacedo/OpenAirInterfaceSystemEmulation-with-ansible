@@ -114,7 +114,7 @@
                 GRUB_HIDDEN_TIMEOUT_QUIET=true
                 GRUB_TIMEOUT=10
                 GRUB_DISTRIBUTOR=`lsb_release -i -s 2> /dev/null || echo Debian`
-                GRUB_CMDLINE_LINUX_DEFAULT="quiet intel_pstate=disable"
+                GRUB_CMDLINE_LINUX_DEFAULT="processor.max_cstate=1 intel_idle.max_cstate=0 idle=poll"
                 GRUB_CMDLINE_LINUX=""
 
                 # Uncomment to enable BadRAM filtering, modify to suit your needs
