@@ -30,11 +30,19 @@
                 sudo mkdir {{ BASE_DIR_INSTALL_ENB }}
                 sudo mkdir {{ BASE_DIR_INSTALL_UE }}
 
-        - name : Remove grub default file and blacklist.conf
+        - name : Remove grub default file
           ignore_errors: true
           shell:  | 
                 rm /etc/default/grub 
+       
+        - name : Remove blacklist.conf default file
+          ignore_errors: true
+          shell:  | 
                 rm /etc/modprobe.d/blacklist.conf 
+        
+        - name : Remove cpufrequtils default file
+          ignore_errors: true
+          shell:  | 
                 rm /etc/default/cpufrequtils 
         
         - name  : Generate new blacklist.conf file
