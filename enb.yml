@@ -495,3 +495,9 @@
           args:
             chdir: "{{ BASE_DIR_INSTALL_UE }}/openairinterface5g"
             executable: /bin/bash
+
+        - name  : Init NAS UE Layer
+          shell: source init_nas_s1 UE
+          args:
+            chdir: "{{ BASE_DIR_INSTALL_UE }}/openairinterface5g/cmake_targets/tools"
+            executable: /bin/bash
