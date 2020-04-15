@@ -10,7 +10,7 @@ We assume that the <b>all machines are connected to the internet</b> and <i>see 
 The first thing to do, is configure the <i>operator machine</i>.
 
 ### 1 - Ansible Installation / Configuration (Operator Machine)
-Ansible's installation procedures depend on the inclusion of some repositories on the operator's machine. Depending on the distribution uses the commands for the inclusion of these repositories they can change, for more information see [this page](https://docs.ansible.com/ansible/latest/installation_guide/intro_installation.html#installing-the-control-node) . The next steps works to <b>linux Ubuntu 18.04+ LTS</b>. To add a new repository, run:
+Ansible's installation procedures depend on the inclusion of some repositories on the operator's machine. Depending on the distribution uses the commands for the inclusion of these repositories they can change, for more information see [this page](https://docs.ansible.com/ansible/latest/installation_guide/intro_installation.html#installing-the-control-node) . The next steps works to <b>linux Ubuntu 16.04+ LTS</b>. To add a new repository, run:
 ```
 sudo apt-add-repository -y ppa:ansible/ansible-2.7
 ```
