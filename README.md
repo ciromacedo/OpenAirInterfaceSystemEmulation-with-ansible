@@ -2,15 +2,15 @@
 This project aims to build a playbook for implementing the elements that make up the [OpenAirInterface System Emulation](https://gitlab.eurecom.fr/oai/openairinterface5g/wikis/OpenAirLTEEmulation). To use the playbook you need the following elements:
 
 1. A machine called 'operator's machine', running Linux and with a properly installed version of [Ansible](https://docs.ansible.com/). The next sections will present the steps for installing Ansible.
-2. A machine for installing the eNB (and if applicable, to simulate the UE's).
-3. One machine for installing the EPC core.
+2. A machine for installing the eNB (and if applicable, to simulate the UE's) - **Ubuntu 16.04.x**.
+3. One machine for installing the CORE (EPC or Free5G).
 
 We assume that the <b>all machines are connected to the internet</b> and <i>see each other</i>.
 ## Installation Guide
 The first thing to do, is configure the <i>operator machine</i>.
 
 ### 1 - Ansible Installation / Configuration (Operator Machine)
-Ansible's installation procedures depend on the inclusion of some repositories on the operator's machine. Depending on the distribution uses the commands for the inclusion of these repositories they can change, for more information see [this page](https://docs.ansible.com/ansible/latest/installation_guide/intro_installation.html#installing-the-control-node) . The next steps works to <b>linux Ubuntu 18.04+ LTS</b>. To add a new repository, run:
+Ansible's installation procedures depend on the inclusion of some repositories on the operator's machine. Depending on the distribution uses the commands for the inclusion of these repositories they can change, for more information see [this page](https://docs.ansible.com/ansible/latest/installation_guide/intro_installation.html#installing-the-control-node) . The next steps works to <b>linux Ubuntu 16.04.x LTS</b>. To add a new repository, run:
 ```
 sudo apt-add-repository -y ppa:ansible/ansible-2.7
 ```
@@ -53,7 +53,7 @@ after copy ssh key, access the enb machine ``` ssh <user>@<enB-host> ``` and run
 ```
 the last command install **python minimal**. This package contains the interpreter and some essential modules. It is used by Ansible for same basic tasks.
 
-After install <i>python minimal</i>, we need get some information about **physical network interface** of the machine. To do this, run ```ifconfig``` and take note the **_physucal network interface name_** display in the next figure.
+After install <i>python minimal</i>, we need get some information about **physical network interface** of the machine. To do this, run ```ifconfig``` and take note the **_physical network interface name_** display in the next figure.
 ![](images/if_config.PNG)
 this information will be necessary when executing the deployment playbook.
 
@@ -94,4 +94,4 @@ the expected result should be equivalent to that shown in the image below
 ```
 ansible-playbook   -vvvv   enb.yml  -i  hosts -e "physical_network_interface=eth0"
 ```
-it will be start the process of deployment the elements of **enB**. The ```-vvvv``` parameter controls the **verbosity level of log** and can be adjusted. The parameter ``` -e ``` enables the possibility of passing custom parameters to playbook, in this case, we need to pass **_the physical network interface name_** ``` "physical_network_interface=eth0" ```
+it will be start the process of deployment the elements of **enB**. The ```-vvvv``` parameter controls the **verbosity level of log** and can be adjusted (```-v```, ```-vv```, ```-vvv``` or ```-vvvv```). The parameter ``` -e ``` enables the possibility of passing custom parameters to playbook, in this case, we need to pass **_the physical network interface name_** ``` "physical_network_interface=eth0" ```
