@@ -91,6 +91,10 @@ the expected result should be equivalent to that shown in the image below
  
  ### 2 - Lowlatency configuration
  Officially, the [OpenAirInterface](https://gitlab.eurecom.fr/oai/openairinterface5g/wikis/OpenAirLTEEmulation) deployment is not recommended on VM's ( [see this](https://gitlab.eurecom.fr/oai/openairinterface5g/wikis/OpenAirKernelMainSetup#virtual-machine-vmware-virtual-box-etc) ), however, we deploy it in [DigitalCoean](https://www.digitalocean.com/) environment with successful
+ #### DigitalOcean environment
+ It is necessary to have an DigitalOcean account, access the control panel and create a simple Droplet as shown below:
+ ![](images/droplet_configuration.JPG)
+ 
  
  ### 3 - Run Ansible Playbook
  After configuration steps, just run the next command.
