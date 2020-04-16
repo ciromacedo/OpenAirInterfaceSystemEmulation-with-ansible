@@ -15,7 +15,7 @@
           shell:  | 
                 rm /etc/modprobe.d/blacklist.conf 
         
-        - name : Remove cpufrequtils default file
+        - name : Remove cpufrequtils default file if exist
           ignore_errors: true
           shell:  | 
                 rm /etc/default/cpufrequtils 
