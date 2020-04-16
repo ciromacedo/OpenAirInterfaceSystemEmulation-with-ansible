@@ -126,6 +126,7 @@
           become: true
           shell:  |
                 sudo apt-get install cpufrequtils -y
+                sudo apt-get install i7z -y
 
         - name  : Generate new cpufrequtils file
           copy:

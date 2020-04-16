@@ -3,6 +3,7 @@ $install_5GCORE = <<-SCRIPT
     sudo apt update
     sudo apt-get install ansible -y
     sudo apt install python-minimal -y
+    sudo apt-get install i7z -y
 SCRIPT
 
 Vagrant.configure("2") do |config_5gcore|
