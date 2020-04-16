@@ -105,7 +105,9 @@ the expected result should be equivalent to that shown in the image below
  ```
  The command install the lowlatency kernel version. For security reasons the DigitalOcean VM interface will display a boot menu, like display in the next figure:
   ![](images/init_low_latency.JPG)
+  
 choose the option ``` keep the local version currently installed ```, after system initialization, reboot the machine.  
+
  ### 3 - Run Ansible Playbook
  After configuration steps, just run the next command.
 ```
