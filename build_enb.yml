@@ -4,7 +4,7 @@
     remote_user: root
     vars:
         COPY_RIGHT: 'ciromacedo@gmail.com'
-        install_enb_dependecies: 'false'
+        build_with_dependecies: 'false'
         BASE_DIR_INSTALL_ENB : "ansible_enB"
     tasks:
         - fail: 
@@ -298,11 +298,11 @@
           args:
             chdir: "{{ BASE_DIR_INSTALL_ENB }}/openairinterface5g"
             executable: /bin/bash
-          when: install_enb_dependecies == 'true'
+          when: build_with_dependecies == 'true'
 
         - name  : Build enB without dependencies - this step can be lazy, wait
           shell: source oaienv && ./cmake_targets/build_oai --eNB -t ETHERNET -c --mu
           args:
             chdir: "{{ BASE_DIR_INSTALL_ENB }}/openairinterface5g"
             executable: /bin/bash
-          when: install_enb_dependecies == 'false'
+          when: build_with_dependecies == 'false'

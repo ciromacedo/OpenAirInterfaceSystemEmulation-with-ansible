@@ -4,6 +4,7 @@
     remote_user: root
     vars:
         COPY_RIGHT: 'ciromacedo@gmail.com'
+        build_with_dependecies: 'false'
         BASE_DIR_INSTALL_UE : "ansible_ue"
     tasks:
 
@@ -93,14 +94,14 @@
           args:
             chdir: "{{ BASE_DIR_INSTALL_UE }}/openairinterface5g"
             executable: /bin/bash
-          when: install_enb_dependecies == 'true'
+          when: build_with_dependecies == 'true'
        
         - name  : Build UE without dependencies - this step can be lazy, wait
           shell: source oaienv && ./cmake_targets/build_oai --UE  -x -t ETHERNET -c -I --musim
           args:
             chdir: "{{ BASE_DIR_INSTALL_UE }}/openairinterface5g"
             executable: /bin/bash
-          when: install_enb_dependecies == 'false'
+          when: build_with_dependecies == 'false'
 
         - name  : Init NAS UE Layer
           shell: source init_nas_s1 UE
