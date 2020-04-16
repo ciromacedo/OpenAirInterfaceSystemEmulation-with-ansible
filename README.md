@@ -90,7 +90,7 @@ the expected result should be equivalent to that shown in the image below
  this means that everything is fine and that <i>Ansible</i> has full access to the <i>enB Machine</i>.
  
  ### 2 - Lowlatency configuration
- Officially, the [OpenAirInterface System Emulation](https://gitlab.eurecom.fr/oai/openairinterface5g/wikis/OpenAirLTEEmulation) deployment is not recommended on VM's ( [see this page](https://gitlab.eurecom.fr/oai/openairinterface5g/wikis/OpenAirKernelMainSetup#virtual-machine-vmware-virtual-box-etc) )
+ Officially, the [OpenAirInterface](https://gitlab.eurecom.fr/oai/openairinterface5g/wikis/OpenAirLTEEmulation) deployment is not recommended on VM's ( [see this](https://gitlab.eurecom.fr/oai/openairinterface5g/wikis/OpenAirKernelMainSetup#virtual-machine-vmware-virtual-box-etc) ), however, we deploy it in [DigitalCoean](https://www.digitalocean.com/) environment with successful
  
  ### 3 - Run Ansible Playbook
  After configuration steps, just run the next command.
