@@ -4,6 +4,7 @@
     remote_user: root
     vars:
         COPY_RIGHT: 'ciromacedo@gmail.com'
+        install_low_lattency_kernel: 'false'
         BASE_DIR_INSTALL_ENB : "ansible_enB"
         BASE_DIR_INSTALL_UE : "ansible_ue"
     tasks:
@@ -16,6 +17,7 @@
           shell:  |
                 sudo apt update
                 sudo apt-get  -y install linux-image-lowlatency linux-headers-lowlatency
+          when: install_low_lattency_kernel == 'true'
 
         - name : Remove all old implantation
           become: true
@@ -163,6 +165,12 @@
              update-grub
              sudo update-rc.d ondemand disable
              sudo /etc/init.d/cpufrequtils restart
+
+        - name  : Install git if not exist
+          apt:
+            name: git
+            state: present
+            update_cache: yes
 
         - name  : Clone openairinterface5g repository - https://gitlab.eurecom.fr/oai/openairinterface5g/
           shell:  git clone --branch v1.0.0 https://gitlab.eurecom.fr/oai/openairinterface5g/ 
