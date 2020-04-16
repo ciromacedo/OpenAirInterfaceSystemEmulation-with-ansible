@@ -98,7 +98,14 @@ the expected result should be equivalent to that shown in the image below
  - Ubuntu 16.04.6(LTS) x64
  - 1GB / 1 CPU (cheapest)
  
- 
+ After create a Droplet, access th VM with ``` ssh ``` and run the following commands:
+ ```
+ sudo apt update
+ sudo apt-get  -y install linux-image-lowlatency linux-headers-lowlatency
+ ```
+ The command install the lowlatency kernel version. For security reasons the DigitalOcean VM interface will display a boot menu, like display in the next figure:
+  ![](images/init_low_latency.JPG)
+choose the option ``` keep the local version currently installed ```, after system initialization, reboot the machine.  
  ### 3 - Run Ansible Playbook
  After configuration steps, just run the next command.
 ```
