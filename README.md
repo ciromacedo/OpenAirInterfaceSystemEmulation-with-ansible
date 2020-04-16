@@ -95,6 +95,9 @@ the expected result should be equivalent to that shown in the image below
  It is necessary to have an DigitalOcean account, access the control panel and create a simple Droplet as shown below:
  ![](images/droplet_configuration.JPG)
  
+ - [x] Ubuntu 16.04.6(LTS) x64
+ - [x] 1GB / 1 CPU (cheapest)
+ 
  
  ### 3 - Run Ansible Playbook
  After configuration steps, just run the next command.
