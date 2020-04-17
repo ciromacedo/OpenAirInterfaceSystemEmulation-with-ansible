@@ -117,6 +117,6 @@ After initialization, type ``` uname -r ```. The expected result should be ident
  ### 3 - Run Ansible Playbook
  After configuration steps, just run the next command.
 ```
-ansible-playbook   -vvvv   enb.yml  -i  hosts -e "physical_network_interface=eth0 install_low_lattency_kernel=false"
+ansible-playbook   -vvvv   build_enB_and_UE.yml  -i  hosts -e "physical_network_interface=<< physical network interface name>> build_with_dependecies=true"
 ```
 it will be start the process of deployment the elements of **enB**. The ```-vvvv``` parameter controls the **verbosity level of log** and can be adjusted (```-v```, ```-vv```, ```-vvv``` or ```-vvvv```). The parameter ``` -e ``` enables the possibility of passing custom parameters to playbook, in this case, we need to pass **_the physical network interface name_** ``` "physical_network_interface=eth0" ```
