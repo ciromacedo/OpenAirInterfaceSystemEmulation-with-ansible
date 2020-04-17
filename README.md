@@ -120,3 +120,11 @@ After initialization, type ``` uname -r ```. The expected result should be ident
 ansible-playbook   -vvvv   build_enB_and_UE.yml  -i  hosts -e "physical_network_interface=<< physical network interface name>> build_with_dependecies=true"
 ```
 it will be start the process of deployment the elements of **enB**. The ```-vvvv``` parameter controls the **verbosity level of log** and can be adjusted (```-v```, ```-vv```, ```-vvv``` or ```-vvvv```). The parameter ``` -e ``` enables the possibility of passing custom parameters to playbook, in this case, we need to pass **_the physical network interface name_** ``` "physical_network_interface=eth0" ```
+### 4 - Test instalation
+
+After running the playbook, access the target machine and acess root directory. Type ``` ls ``` and check for ``` ansible_ue ``` and ```ansible_enB``` directories. Access ``` /root/ansible_ue/openairinterface5g/cmake_targets/lte_build_oai/build ``` and run the following command:
+```
+./lte-uesoftmodem -O /root/ansible_ue/openairinterface5g/ci-scripts/conf_files/ue.nfapi.conf --L2-emul 3 --num-ues 1
+```
+the expected result is similar display in the next figure:
+  ![](images/result_ue_execution.PNG)
