@@ -95,12 +95,9 @@
                   };
               };
 
-        - name: count our fruit
-          debug:
-            msg: "{{ item }} with index {{ my_idx }}"
-          loop:
-            - apple
-            - banana
-            - pear
-          loop_control:
-            index_var: my_idx
+        - name: Test Loop
+          shell: |
+              for i in {1..{{ BASE_DIR_INSTALL_UE }} }; do 
+              echo -n "This is a test in loop $i "; date ; sleep 2; 
+              done
+ #             echo 'export GOPATH=$HOME/work' >> {{ BASE_DIR_INSTALL_UE }}/openairinterface5g/openair3/NAS/TOOLS/ue_eurecom_test_sfr.conf
