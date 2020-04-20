@@ -4,7 +4,7 @@
     remote_user: root
     vars:
         COPY_RIGHT: 'ciromacedo@gmail.com'
-        num_user_equipment: '1'
+        num_ues: '1'
         BASE_DIR_INSTALL_UE : "ansible_ue"
     tasks:
 
@@ -127,6 +127,101 @@
             - { ue_id: UE2 }
             - { ue_id: UE3 }
             - { ue_id: UE4 }
+            - { ue_id: UE5 }
+            - { ue_id: UE6 }
+            - { ue_id: UE7 }
+            - { ue_id: UE8 }
+            - { ue_id: UE9 }
+            - { ue_id: UE10 }
+            - { ue_id: UE11 }
+            - { ue_id: UE12 }
+            - { ue_id: UE13 }
+            - { ue_id: UE14 }
+            - { ue_id: UE15 }
+            - { ue_id: UE16 }
+            - { ue_id: UE17 }
+            - { ue_id: UE18 }
+            - { ue_id: UE19 }
+            - { ue_id: UE20 }
+            - { ue_id: UE21 }
+            - { ue_id: UE22 }
+            - { ue_id: UE23 }
+            - { ue_id: UE24 }
+            - { ue_id: UE25 }
+            - { ue_id: UE26 }
+            - { ue_id: UE27 }
+            - { ue_id: UE28 }
+            - { ue_id: UE29 }
+            - { ue_id: UE30 }
+            - { ue_id: UE31 }
+            - { ue_id: UE32 }
+            - { ue_id: UE33 }
+            - { ue_id: UE34 }
+            - { ue_id: UE35 }
+            - { ue_id: UE36 }
+            - { ue_id: UE37 }
+            - { ue_id: UE38 }
+            - { ue_id: UE39 }
+            - { ue_id: UE40 }
+            - { ue_id: UE41 }
+            - { ue_id: UE42 }
+            - { ue_id: UE43 }
+            - { ue_id: UE44 }
+            - { ue_id: UE45 }
+            - { ue_id: UE46 }
+            - { ue_id: UE47 }
+            - { ue_id: UE48 }
+            - { ue_id: UE49 }
+            - { ue_id: UE50 }
+            - { ue_id: UE51 }
+            - { ue_id: UE52 }
+            - { ue_id: UE53 }
+            - { ue_id: UE54 }
+            - { ue_id: UE55 }
+            - { ue_id: UE56 }
+            - { ue_id: UE57 }
+            - { ue_id: UE58 }
+            - { ue_id: UE59 }
+            - { ue_id: UE60 }
+            - { ue_id: UE61 }
+            - { ue_id: UE62 }
+            - { ue_id: UE63 }
+            - { ue_id: UE64 }
+            - { ue_id: UE65 }
+            - { ue_id: UE66 }
+            - { ue_id: UE67 }
+            - { ue_id: UE68 }
+            - { ue_id: UE69 }
+            - { ue_id: UE70 }
+            - { ue_id: UE71 }
+            - { ue_id: UE72 }
+            - { ue_id: UE73 }
+            - { ue_id: UE74 }
+            - { ue_id: UE75 }
+            - { ue_id: UE76 }
+            - { ue_id: UE77 }
+            - { ue_id: UE78 }
+            - { ue_id: UE79 }
+            - { ue_id: UE80 }
+            - { ue_id: UE81 }
+            - { ue_id: UE82 }
+            - { ue_id: UE83 }
+            - { ue_id: UE84 }
+            - { ue_id: UE85 }
+            - { ue_id: UE86 }
+            - { ue_id: UE87 }
+            - { ue_id: UE88 }
+            - { ue_id: UE89 }
+            - { ue_id: UE90 }
+            - { ue_id: UE91 }
+            - { ue_id: UE92 }
+            - { ue_id: UE93 }
+            - { ue_id: UE94 }
+            - { ue_id: UE95 }
+            - { ue_id: UE96 }
+            - { ue_id: UE97 }
+            - { ue_id: UE98 }
+            - { ue_id: UE99 }
           loop_control:
             index_var: my_idx
-          when: "my_idx|int < 3"
+          when: "my_idx|int < {{ num_ues }}"
