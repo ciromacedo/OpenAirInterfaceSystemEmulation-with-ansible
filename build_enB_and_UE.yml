@@ -5,13 +5,17 @@
     vars:
         COPY_RIGHT: 'ciromacedo@gmail.com'
         build_with_dependecies: 'false'
-        num_ues: '1'
+        num_ues: ''
         BASE_DIR_INSTALL_ENB : "ansible_enB"
         BASE_DIR_INSTALL_UE : "ansible_ue"
     tasks:
         - fail: 
             msg: "'physical_network_interface' not found, this parameter is required!"
           when: physical_network_interface == ''
+       
+          - fail: 
+            msg: "'num_ues' not found, this parameter is required!"
+          when: num_ues == ''
           
         - name : Remove all old implantation
           become: true
