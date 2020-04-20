@@ -103,9 +103,7 @@
 
         - name: Add Ue's
           blockinfile:
-            path: /openairinterface5g/openair3/NAS/TOOLS/ue_eurecom_test_sfr.conf
-            args:
-              chdir: "{{ BASE_DIR_INSTALL_UE }}" 
+            path: /{{ BASE_DIR_INSTALL_UE }}/openairinterface5g/openair3/NAS/TOOLS/ue_eurecom_test_sfr.conf
             block: |
               {{ item.ip }} {{ item.name }}
             marker: "# {mark} ANSIBLE MANAGED BLOCK {{ item.name }}"
