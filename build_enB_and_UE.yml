@@ -13,7 +13,7 @@
             msg: "'physical_network_interface' not found, this parameter is required!"
           when: physical_network_interface == ''
        
-          - fail: 
+        - fail: 
             msg: "'num_ues' not found, this parameter is required!"
           when: num_ues == ''
           
