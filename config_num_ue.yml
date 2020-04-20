@@ -109,7 +109,7 @@
                       };
 
                       SIM: {
-                          MSIN="00000000{{ ue_idx | int + 1 }} ";
+                          MSIN="00000000{{ ue_idx | int + 1 }}";
                           USIM_API_K="8baf473f2f8fd09487cccbd7097c6862";
                           OPC="e734f8734007d6c5ce7a0508809e7e9c";
                           MSISDN="33638020004";
