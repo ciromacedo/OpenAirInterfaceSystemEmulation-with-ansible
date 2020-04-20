@@ -121,6 +121,7 @@
                       FPLMN_LIST = ();
                       EHPLMN_LIST= ();
                   };
+            marker: "# {mark} User Equipment {{ item.ue_id }}"
           loop:
             - { ue_id: UE0 }
             - { ue_id: UE1 }
