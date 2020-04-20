@@ -95,22 +95,18 @@
                   };
               };
 
-        - name: Test Loop
-          shell: |
-              for i in {1..{{ BASE_DIR_INSTALL_UE }} }; do 
-                echo "Teste $i " >> {{ BASE_DIR_INSTALL_UE }}/openairinterface5g/openair3/NAS/TOOLS/ue_eurecom_test_sfr.conf
-              done
-
         - name: Add Ue's
           blockinfile:
-            path: /{{ BASE_DIR_INSTALL_UE }}/openairinterface5g/openair3/NAS/TOOLS/ue_eurecom_test_sfr.conf
+            path: /root/{{ BASE_DIR_INSTALL_UE }}/openairinterface5g/openair3/NAS/TOOLS/ue_eurecom_test_sfr.conf
             block: |
-              {{ item.ip }} {{ item.name }}
+                {{ item.ip }} {{ item.name }}
             marker: "# {mark} ANSIBLE MANAGED BLOCK {{ item.name }}"
           loop:
             - { name: host1, ip: 10.10.1.10 }
             - { name: host2, ip: 10.10.1.11 }
             - { name: host3, ip: 10.10.1.12 }
+          loop_control:
+            index_var: my_idx
 
 #           echo "Teste $i " >> {{ BASE_DIR_INSTALL_UE }}/openairinterface5g/openair3/NAS/TOOLS/ue_eurecom_test_sfr.conf
 #       - name: count our fruit
