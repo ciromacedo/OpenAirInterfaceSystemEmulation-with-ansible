@@ -64,12 +64,12 @@ SCRIPT
 
 Vagrant.configure("2") do |vm_conf|
     #core5G
-   # vm_conf.vm.define "core5G" do |config|
-   #     config.vm.provider "virtualbox"
-   #     config.vm.box = "ubuntu/xenial64"
-   #     config.vm.network "public_network", ip:  "192.168.50.11"
-   #     config.vm.provision "shell", inline: $install_5GCORE
-   # end
+    vm_conf.vm.define "core5G" do |config|
+        config.vm.provider "virtualbox"
+        config.vm.box = "ubuntu/xenial64"
+        config.vm.network "public_network", ip:  "192.168.50.11"
+        config.vm.provision "shell", inline: $install_5GCORE
+    end
 
    #free5g
    vm_conf.vm.define "free5g" do |config|
