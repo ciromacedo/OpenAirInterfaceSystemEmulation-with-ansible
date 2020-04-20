@@ -112,13 +112,12 @@
             - { name: host2, ip: 10.10.1.11 }
             - { name: host3, ip: 10.10.1.12 }
 
- #           echo "Teste $i " >> {{ BASE_DIR_INSTALL_UE }}/openairinterface5g/openair3/NAS/TOOLS/ue_eurecom_test_sfr.conf
-        - name: count our fruit
-            msg: "{{ item }} with index {{ my_idx }}"
-
-          loop:
-            - apple
-            - banana
-            - pear
-          loop_control:
-            index_var: my_idx
+#           echo "Teste $i " >> {{ BASE_DIR_INSTALL_UE }}/openairinterface5g/openair3/NAS/TOOLS/ue_eurecom_test_sfr.conf
+#       - name: count our fruit
+#           msg: "{{ item }} with index {{ my_idx }}"
+#          loop:
+#            - apple
+#            - banana
+#            - pear
+#          loop_control:
+#            index_var: my_idx
