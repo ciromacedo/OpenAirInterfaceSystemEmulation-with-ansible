@@ -99,7 +99,7 @@
           blockinfile:
             path: /root/{{ BASE_DIR_INSTALL_UE }}/openairinterface5g/openair3/NAS/TOOLS/ue_eurecom_test_sfr.conf
             block: |
-                {{ item.id }}:
+                {{ item.ue_id }}:
                   {
                       USER: {
                           IMEI="356113022094149";
@@ -122,19 +122,11 @@
                       EHPLMN_LIST= ();
                   };
           loop:
-            - { id: UE0 }
-            - { id: UE1 }
-            - { id: UE2 }
-            - { id: UE3 }
+            - { ue_id: UE0 }
+            - { ue_id: UE1 }
+            - { ue_id: UE2 }
+            - { ue_id: UE3 }
+            - { ue_id: UE4 }
           loop_control:
             index_var: my_idx
-
-#           echo "Teste $i " >> {{ BASE_DIR_INSTALL_UE }}/openairinterface5g/openair3/NAS/TOOLS/ue_eurecom_test_sfr.conf
-#       - name: count our fruit
-#           msg: "{{ item }} with index {{ my_idx }}"
-#          loop:
-#            - apple
-#            - banana
-#            - pear
-#          loop_control:
-#            index_var: my_idx
+          when: "my_idx|int < 3"
