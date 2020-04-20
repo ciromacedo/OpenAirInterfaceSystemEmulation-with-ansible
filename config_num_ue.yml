@@ -98,5 +98,5 @@
         - name: Test Loop
           shell: |
               for i in {1..{{ BASE_DIR_INSTALL_UE }} }; do 
-                echo 'Teste $i' >> {{ BASE_DIR_INSTALL_UE }}/openairinterface5g/openair3/NAS/TOOLS/ue_eurecom_test_sfr.conf
+                echo "Teste $i " >> {{ BASE_DIR_INSTALL_UE }}/openairinterface5g/openair3/NAS/TOOLS/ue_eurecom_test_sfr.conf
               done
