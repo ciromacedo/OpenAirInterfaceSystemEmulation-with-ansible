@@ -122,21 +122,21 @@
                   };
             marker: "# {mark} User Equipment {{ item.ue_id }}"
           loop:
-            - { ue_id: UE0 ,   msin: 0000000001 }
-            - { ue_id: UE1 ,   msin: 0000000002 }
-            - { ue_id: UE2 ,   msin: 0000000003 }
-            - { ue_id: UE3 ,   msin: 0000000004 }
-            - { ue_id: UE4 ,   msin: 0000000005 }
-            - { ue_id: UE5 ,   msin: 0000000006 }
-            - { ue_id: UE6 ,   msin: 0000000007 }
-            - { ue_id: UE7 ,   msin: 0000000008 }
-            - { ue_id: UE8 ,   msin: 0000000009 }
-            - { ue_id: UE9 ,   msin: 0000000010 }
-            - { ue_id: UE10 ,  msin: 0000000011 }
-            - { ue_id: UE11 ,  msin: 0000000012 }
-            - { ue_id: UE12 ,  msin: 0000000013 }
-            - { ue_id: UE13 ,  msin: 0000000014 }
-            - { ue_id: UE14 ,  msin: 0000000015 }
+            - { ue_id: UE0 ,   msin: '0000000001' }
+            - { ue_id: UE1 ,   msin: '0000000002' }
+            - { ue_id: UE2 ,   msin: '0000000003' }
+            - { ue_id: UE3 ,   msin: '0000000004' }
+            - { ue_id: UE4 ,   msin: '0000000005' }
+            - { ue_id: UE5 ,   msin: '0000000006' }
+            - { ue_id: UE6 ,   msin: '0000000007' }
+            - { ue_id: UE7 ,   msin: '0000000008' }
+            - { ue_id: UE8 ,   msin: '0000000009' }
+            - { ue_id: UE9 ,   msin: '0000000010' }
+            - { ue_id: UE10 ,  msin: '0000000011' }
+            - { ue_id: UE11 ,  msin: '0000000012' }
+            - { ue_id: UE12 ,  msin: '0000000013' }
+            - { ue_id: UE13 ,  msin: '0000000014' }
+            - { ue_id: UE14 ,  msin: '0000000015' }
             - { ue_id: UE15 ,  msin: 0000000016 }
             - { ue_id: UE16 ,  msin: 0000000017 }
             - { ue_id: UE17 ,  msin: 0000000018 }
