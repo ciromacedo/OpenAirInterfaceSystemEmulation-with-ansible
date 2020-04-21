@@ -5,6 +5,7 @@
     vars:
         COPY_RIGHT: 'ciromacedo@gmail.com'
         build_with_dependecies: 'false'
+        core_installation_ip_address: 'REPLACE_THIS_WITH_THE_CORE_INSTALLATION_IP_ADDRESS'
         num_ues: '1'
         BASE_DIR_INSTALL_ENB : "ansible_enB"
         BASE_DIR_INSTALL_UE : "ansible_ue"
@@ -322,10 +323,10 @@
 
 
                     ////////// MME parameters:
-                    mme_ip_address      = ( { ipv4       = "CI_MME_IP_ADDR";
-                                            ipv6       = "192:168:30::17";
-                                            active     = "yes";
-                                            preference = "ipv4";
+                    mme_ip_address      = ( { ipv4       = "{{ core_installation_ip_address }}";
+                                              ipv6       = "192:168:30::17";
+                                              active     = "yes";
+                                              preference = "ipv4";
                                             }
                                         );
 
