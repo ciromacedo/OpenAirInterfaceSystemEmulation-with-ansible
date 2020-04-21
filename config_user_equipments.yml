@@ -2,10 +2,8 @@
 -   hosts: oaisim-RAM
     become: yes
     remote_user: root
+    BASE_DIR_INSTALL_UE : "ansible_ue"
     vars:
-        COPY_RIGHT: 'ciromacedo@gmail.com'
-        num_ues: '1'
-        BASE_DIR_INSTALL_UE : "ansible_ue"
         user_equiments:
           - { ue_id: UE0 ,   msin: '0000000001' }
           - { ue_id: UE1 ,   msin: '0000000002' }
@@ -109,94 +107,7 @@
           - { ue_id: UE99 ,  msin: '0000000100' }
     tasks:
 
-        - name  : Config Nº UE's - Remove ue_eurecom_test_sfr.conf file
-          shell:  rm openairinterface5g/openair3/NAS/TOOLS/ue_eurecom_test_sfr.conf 
-          args:
-            chdir: "{{ BASE_DIR_INSTALL_UE }}" 
-        
-        - name  : Config Nº UE's - Build ue.nfapi.conf file
-          copy:
-            dest: "{{ BASE_DIR_INSTALL_UE }}/openairinterface5g/openair3/NAS/TOOLS/ue_eurecom_test_sfr.conf"
-            content: |
-              # List of known PLMNS
-              PLMN: {
-                  PLMN0: {
-                        FULLNAME="Test network";
-                        SHORTNAME="OAI4G";
-                        MNC="01";
-                        MCC="001";
-
-                  };
-                  PLMN1: {
-                        FULLNAME="SFR France";
-                        SHORTNAME="SFR";
-                        MNC="10";
-                        MCC="208";
-
-                  };
-                  PLMN2: {
-                        FULLNAME="SFR France";
-                        SHORTNAME="SFR";
-                        MNC="11";
-                        MCC="208";
-                  };
-                  PLMN3: {
-                        FULLNAME="SFR France";
-                        SHORTNAME="SFR";
-                        MNC="13";
-                        MCC="208";
-                  };
-                  PLMN4: {
-                        FULLNAME="OAI LTEBOX";
-                        SHORTNAME="OAIALU";
-                        MNC="93";
-                        MCC="208";
-                  };
-                  PLMN5: {
-                        FULLNAME="T-Mobile USA";
-                        SHORTNAME="T-Mobile";
-                        MNC="280";
-                        MCC="310";
-                  };
-                  PLMN6: {
-                        FULLNAME="FICTITIOUS USA";
-                        SHORTNAME="FICTITIO";
-                        MNC="028";
-                        MCC="310";
-                  };
-                  PLMN7: {
-                        FULLNAME="Vodafone Italia";
-                        SHORTNAME="VODAFONE";
-                        MNC="10";
-                        MCC="222";
-                  };
-                  PLMN8: {
-                        FULLNAME="Vodafone Spain";
-                        SHORTNAME="VODAFONE";
-                        MNC="01";
-                        MCC="214";
-                  };
-                  PLMN9: {
-                        FULLNAME="Vodafone Spain";
-                        SHORTNAME="VODAFONE";
-                        MNC="06";
-                        MCC="214";
-                  };
-                  PLMN10: {
-                        FULLNAME="Vodafone Germ";
-                        SHORTNAME="VODAFONE";
-                        MNC="02";
-                        MCC="262";
-                  };
-                  PLMN11: {
-                        FULLNAME="Vodafone Germ";
-                        SHORTNAME="VODAFONE";
-                        MNC="04";
-                        MCC="262";
-                  };
-              };
-
-        - name: Add Ue's
+        - name: Add User equipments
           blockinfile:
             path: /root/{{ BASE_DIR_INSTALL_UE }}/openairinterface5g/openair3/NAS/TOOLS/ue_eurecom_test_sfr.conf
             block: |
