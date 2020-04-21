@@ -106,7 +106,7 @@ the expected result should be equivalent to that shown in the image below
  The command install the lowlatency kernel version. For security reasons the DigitalOcean VM interface will display a boot menu, like display in the next figure:
   ![](images/init_low_latency.JPG)
   
-choose the option ``` keep the local version currently installed ``` and wait, after system initialization, restart the machine.
+choose the option ``` keep the local version currently installed ``` and wait, after system initialization, you should be restart the machine.
 
 After initialization, type ``` uname -r ```. The expected result should be identical to:
 
