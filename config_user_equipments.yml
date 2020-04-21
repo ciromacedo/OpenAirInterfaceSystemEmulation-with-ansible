@@ -1,5 +1,5 @@
 ---
-- block:
+-   block:
     vars:
         BASE_DIR_INSTALL_UE : "ansible_ue"
         user_equiments:
