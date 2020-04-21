@@ -1,5 +1,5 @@
 ---
--   hosts: oaisim-enB
+-   hosts: oaisim-RAM
     become: yes
     remote_user: root
     vars:
