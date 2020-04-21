@@ -2,8 +2,8 @@
 -   hosts: oaisim-RAM
     become: yes
     remote_user: root
-    BASE_DIR_INSTALL_UE : "ansible_ue"
     vars:
+        BASE_DIR_INSTALL_UE : "ansible_ue"
         user_equiments:
           - { ue_id: UE0 ,   msin: '0000000001' }
           - { ue_id: UE1 ,   msin: '0000000002' }
