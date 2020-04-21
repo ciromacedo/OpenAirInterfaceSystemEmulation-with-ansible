@@ -1,5 +1,7 @@
 ---
--   block:
+-   hosts: oaisim-RAM
+    become: yes
+    remote_user: root
     vars:
         BASE_DIR_INSTALL_UE : "ansible_ue"
         user_equiments:
