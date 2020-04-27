@@ -24,12 +24,16 @@
                 sudo apt-get -y install mongodb wget git
                 sudo systemctl start mongodb
 
-        - name : Install Golang 1.11.4.
+        - name : Install Golang 1.11.4. 1/2
           become: true
           shell:  |
                 wget -q https://storage.googleapis.com/golang/getgo/installer_linux
                 chmod +x installer_linux
                 ./installer_linux
+        
+        - name : Install Golang 1.11.4. 2/2
+          become: true
+          shell:  |
                 source ~/.bash_profile
                 rm -f installer_linux
                 go get -u -v "github.com/gorilla/mux"
