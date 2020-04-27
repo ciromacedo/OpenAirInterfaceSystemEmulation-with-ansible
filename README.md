@@ -114,13 +114,13 @@ After initialization, type ``` uname -r ```. The expected result should be ident
  4.4.0-177-lowlatency
  ```
 
- ### 3 - Run Ansible Playbook
+ ### 3 - Run Ansible Playbook (RAM Install)
  After configuration steps, just run the next command.
 ```
 ansible-playbook   -vvvv   build_RAM.yml  -i  hosts -e "physical_network_interface=<< physical network interface name>> build_with_dependecies=true num_ues=10 core_installation_ip_address=<< replace this with the CORE installation ip address >>"
 ```
-it will be start the process of deployment the elements of **enB**. The ```-vvvv``` parameter controls the **verbosity level of log** and can be adjusted (```-v```, ```-vv```, ```-vvv``` or ```-vvvv```). The parameter ``` -e ``` enables the possibility of passing custom parameters to playbook, in this case, we need to pass **_the physical network interface name_** ``` "physical_network_interface=eth0" ```, **num_ues** and **core_installation_ip_address**.
-### 4 - Test instalation
+it will be start the process of deployment the elements of **enB/Ue's**. The ```-vvvv``` parameter controls the **verbosity level of log** and can be adjusted (```-v```, ```-vv```, ```-vvv``` or ```-vvvv```). The parameter ``` -e ``` enables the possibility of passing custom parameters to playbook, in this case, we need to pass **_the physical network interface name_** ``` "physical_network_interface=eth0" ```, **num_ues** and **core_installation_ip_address**.
+### 4 - Test RAM instalation
 
 After running the playbook, access the target machine and acess root directory. Type ``` ls ``` and check for ``` ansible_ue ``` and ```ansible_enB``` directories. Access ``` /root/ansible_ue/openairinterface5g/cmake_targets/lte_build_oai/build ``` and run the following command:
 ```
@@ -128,3 +128,10 @@ After running the playbook, access the target machine and acess root directory. 
 ```
 the expected result is similar display in the next figure:
   ![](images/result_ue_execution.PNG)
+  
+ ### 5 - Run Ansible Playbook (Free5G Install)
+ After configuration steps, just run the next command.
+```
+ansible-playbook   -vvvv   build_free5GC.yml  -i  hosts -e "physical_network_interface=<< physical network interface name>>"
+```
+it will be start the process of deployment the elements of **enB/Ue's**. The ```-vvvv``` parameter controls the **verbosity level of log** and can be adjusted (```-v```, ```-vv```, ```-vvv``` or ```-vvvv```).
