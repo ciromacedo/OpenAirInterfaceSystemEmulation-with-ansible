@@ -1,18 +1,16 @@
-$install_5GCORE = <<-SCRIPT
+$install_ANSIBLE = <<-SCRIPT
     sudo apt-add-repository -y ppa:ansible/ansible-2.7
     sudo apt update
     sudo apt-get install ansible -y
     sudo apt install python-minimal -y
-    sudo apt-get install i7z -y
 SCRIPT
 
 $install_FREE5G = <<-SCRIPT
     sudo apt update
-    sudo apt install build-essential
+    sudo apt install build-essential -y
     sudo apt-get install manpages-dev
     sudo apt-get install gcc
 
-    #install golang
     curl -O https://dl.google.com/go/go1.11.4.linux-amd64.tar.gz
     sha256sum go1.11.4.linux-amd64.tar.gz
     tar xvf go1.11.4.linux-amd64.tar.gz
@@ -51,7 +49,7 @@ $install_FREE5G = <<-SCRIPT
 
     sudo apt-get -y install autoconf libtool gcc pkg-config git flex bison libsctp-dev libgnutls28-dev libgcrypt-dev libssl-dev libidn11-dev libmongoc-dev libbson-dev libyaml-dev
 
-    git clone https://github.com/free5gmano/free5gmano.git
+    git clone https://github.com/baleeiro17/free5gcore-configurations.git
 
     cd free5gmano
     autoreconf -iv
@@ -63,12 +61,12 @@ SCRIPT
 
 
 Vagrant.configure("2") do |vm_conf|
-    #core5G
-    vm_conf.vm.define "core5G" do |config|
+    #macedo
+    vm_conf.vm.define "macedo" do |config|
         config.vm.provider "virtualbox"
         config.vm.box = "ubuntu/xenial64"
-        config.vm.network "public_network", ip:  "192.168.50.11"
-        config.vm.provision "shell", inline: $install_5GCORE
+        config.vm.network "private_network", ip:  "192.168.50.11"
+        config.vm.provision "shell", inline: $install_ANSIBLE
     end
 
    #free5g
@@ -76,6 +74,6 @@ Vagrant.configure("2") do |vm_conf|
         config.vm.provider "virtualbox"
         config.vm.box = "ubuntu/bionic64"
         config.vm.network "public_network", ip:  "192.168.50.12"
-        config.vm.provision "shell", inline: $install_FREE5G
+        #config.vm.provision "shell", inline: $install_FREE5G
     end
 end
