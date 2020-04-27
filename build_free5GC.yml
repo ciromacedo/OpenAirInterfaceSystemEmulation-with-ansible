@@ -5,6 +5,7 @@
     vars:
         COPY_RIGHT: 'ciromacedo@gmail.com'
         build_with_dependecies: 'false'
+        enable_ipv6: 'true'
         BASE_DIR_INSTALL : "ansible_free5GC"
     tasks:
         - fail: 
@@ -24,18 +25,61 @@
                 sudo apt-get -y install mongodb wget git
                 sudo systemctl start mongodb
 
-        - name : Install Golang 1.11.4. 1/2
+        - name : Install Golang 1.14.2
           become: true
           shell:  |
-                wget -q https://storage.googleapis.com/golang/getgo/installer_linux
-                chmod +x installer_linux
-                ./installer_linux
+                sudo add-apt-repository ppa:longsleep/golang-backports -y
+                sudo apt update
+                sudo apt install golang-go -y
         
-        - name : Install Golang 1.11.4. 2/2
+        - name : Write the configuration file for the TUN device 1/2
           become: true
           shell:  |
-                source ~/.bash_profile
-                rm -f installer_linux
-                go get -u -v "github.com/gorilla/mux"
-                go get -u -v "golang.org/x/net/http2"
-                go get -u -v "golang.org/x/sys/unix"
+                sudo sh -c "cat << EOF > /etc/systemd/network/99-free5gc.netdev
+                [NetDev]
+                Name=uptun
+                Kind=tun
+                EOF"
+        
+        - name : Write the configuration file for the TUN device 2/2
+          become: true
+          shell:  |
+                sudo systemctl enable systemd-networkd
+                sudo systemctl restart systemd-networkd
+        
+        - name : IP address on TUN device. IPV6 Enable
+          become: true
+          shell:  |
+                sudo sh -c "cat << EOF > /etc/systemd/network/99-free5gc.network
+                [Match]
+                Name=uptun
+                [Network]
+                Address=45.45.0.1/16
+                Address=cafe::1/64
+                EOF"
+          when:  enable_ipv6 == 'true'
+        
+        - name : IP address on TUN device. IPV6 Disable 
+          become: true
+          shell:  |
+                sudo sh -c "echo 'net.ipv6.conf.uptun.disable_ipv6=0' > /etc/sysctl.d/30-free5gc.conf"
+                sudo sysctl -p /etc/sysctl.d/30-free5gc.conf
+          when:  enable_ipv6 == 'false'
+
+        - name : IP address on TUN device. IPV6 Disable 
+          become: true
+          shell:  |
+                sudo sh -c "cat << EOF > /etc/systemd/network/99-free5gc.network
+                [Match]
+                Name=uptun
+                [Network]
+                Address=45.45.0.1/16
+                EOF"
+          when:  enable_ipv6 == 'false'
+        
+        - name : IP address on TUN device. IPV6 Disable 
+          become: true
+          shell:  |
+                sudo systemctl enable systemd-networkd
+                sudo systemctl restart systemd-networkd
+                sudo apt-get -y install net-tools
