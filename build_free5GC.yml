@@ -15,5 +15,23 @@
           become: true
           ignore_errors: true
           shell:  |
-                sudo rm -rf {{ BASE_DIR_INSTALL_ENB }}
-                sudo rm -rf {{ BASE_DIR_INSTALL_UE }}
+                sudo rm -rf {{ BASE_DIR_INSTALL }}
+        
+        - name : Install MongoDB 3.6.3
+          become: true
+          shell:  |
+                sudo apt-get update
+                sudo apt-get -y install mongodb wget git
+                sudo systemctl start mongodb
+
+        - name : Install Golang 1.11.4.
+          become: true
+          shell:  |
+                wget -q https://storage.googleapis.com/golang/getgo/installer_linux
+                chmod +x installer_linux
+                ./installer_linux
+                source ~/.bash_profile
+                rm -f installer_linux
+                go get -u -v "github.com/gorilla/mux"
+                go get -u -v "golang.org/x/net/http2"
+                go get -u -v "golang.org/x/sys/unix"
