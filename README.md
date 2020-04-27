@@ -78,10 +78,10 @@ git clone https://github.com/ciromacedo/oaisim-with-ansible.git
 ```
 after clone, access the project folder and open the **hosts** file with a text editor (Nano, Vi). The file content is similar to:
 ```
-[enB]
-<enB-IP-address>
+[oaisim-RAM]
+<RAM-IP-address>
 ```
-replace the ```<enB-IP-address>``` for the IP address of the <i>enB Machine</i>. Save and close the file, and inside the project base directory run the next command:
+replace the ```<RAM-IP-address>``` for the IP address of the <i>enB/Ue's Machine</i>. Save and close the file, and inside the project base directory run the next command:
 ```
 ansible -i ./hosts -m ping all -u root
 ```
