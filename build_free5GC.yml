@@ -95,6 +95,7 @@
 #                git clone https://bitbucket.org/nctu_5g/free5gc-stage-1.git
 
         - name : Compile free5GCore 
+          ignore_errors: true
           shell:  |
                 autoreconf -iv
                 ./configure --prefix=`pwd`/install
@@ -109,6 +110,7 @@
             chdir: "free5gc-stage-1/support/freeDiameter"
 
         - name : Run Make Install 
+          ignore_errors: true
           shell:  |
                 make install
           args:
