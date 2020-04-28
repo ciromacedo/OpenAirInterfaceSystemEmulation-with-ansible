@@ -12,87 +12,87 @@
             msg: "'physical_network_interface' not found, this parameter is required!"
           when: physical_network_interface == ''
        
-        - name : Remove all old implantation
-          become: true
-          ignore_errors: true
-          shell:  |
-                sudo rm -rf {{ BASE_DIR_INSTALL }}
+#        - name : Remove all old implantation
+#          become: true
+#          ignore_errors: true
+#          shell:  |
+#                sudo rm -rf {{ BASE_DIR_INSTALL }}
         
-        - name : Install MongoDB 3.6.3
-          become: true
-          shell:  |
-                sudo apt-get update
-                sudo apt-get -y install mongodb wget git
-                sudo systemctl start mongodb
+#        - name : Install MongoDB 3.6.3
+#          become: true
+#          shell:  |
+#                sudo apt-get update
+#                sudo apt-get -y install mongodb wget git
+#                sudo systemctl start mongodb
 
-        - name : Install Golang 1.14.2
-          become: true
-          shell:  |
-                sudo add-apt-repository ppa:longsleep/golang-backports -y
-                sudo apt update
-                sudo apt install golang-go -y
+#        - name : Install Golang 1.14.2
+#          become: true
+#          shell:  |
+#                sudo add-apt-repository ppa:longsleep/golang-backports -y
+#                sudo apt update
+#                sudo apt install golang-go -y
         
-        - name : Write the configuration file for the TUN device 1/2
-          become: true
-          shell:  |
-                sudo sh -c "cat << EOF > /etc/systemd/network/99-free5gc.netdev
-                [NetDev]
-                Name=uptun
-                Kind=tun
-                EOF"
+#        - name : Write the configuration file for the TUN device 1/2
+#          become: true
+#          shell:  |
+#                sudo sh -c "cat << EOF > /etc/systemd/network/99-free5gc.netdev
+#                [NetDev]
+#                Name=uptun
+#                Kind=tun
+#                EOF"
         
-        - name : Write the configuration file for the TUN device 2/2
-          become: true
-          shell:  |
-                sudo systemctl enable systemd-networkd
-                sudo systemctl restart systemd-networkd
+#        - name : Write the configuration file for the TUN device 2/2
+#          become: true
+#          shell:  |
+#                sudo systemctl enable systemd-networkd
+#                sudo systemctl restart systemd-networkd
         
-        - name : IP address on TUN device. IPV6 Enable
-          become: true
-          shell:  |
-                sudo sh -c "cat << EOF > /etc/systemd/network/99-free5gc.network
-                [Match]
-                Name=uptun
-                [Network]
-                Address=45.45.0.1/16
-                Address=cafe::1/64
-                EOF"
-          when:  enable_ipv6 == 'true'
+#        - name : IP address on TUN device. IPV6 Enable
+#          become: true
+#          shell:  |
+#                sudo sh -c "cat << EOF > /etc/systemd/network/99-free5gc.network
+#                [Match]
+#                Name=uptun
+#                [Network]
+#                Address=45.45.0.1/16
+#                Address=cafe::1/64
+#                EOF"
+#          when:  enable_ipv6 == 'true'
         
-        - name : IP address on TUN device. IPV6 Disable 
-          become: true
-          shell:  |
-                sudo sh -c "echo 'net.ipv6.conf.uptun.disable_ipv6=0' > /etc/sysctl.d/30-free5gc.conf"
-                sudo sysctl -p /etc/sysctl.d/30-free5gc.conf
-          when:  enable_ipv6 == 'false'
+#        - name : IP address on TUN device. IPV6 Disable 
+#          become: true
+#          shell:  |
+#                sudo sh -c "echo 'net.ipv6.conf.uptun.disable_ipv6=0' > /etc/sysctl.d/30-free5gc.conf"
+#                sudo sysctl -p /etc/sysctl.d/30-free5gc.conf
+#          when:  enable_ipv6 == 'false'
 
-        - name : IP address on TUN device. IPV6 Disable 
-          become: true
-          shell:  |
-                sudo sh -c "cat << EOF > /etc/systemd/network/99-free5gc.network
-                [Match]
-                Name=uptun
-                [Network]
-                Address=45.45.0.1/16
-                EOF"
-          when:  enable_ipv6 == 'false'
+#        - name : IP address on TUN device. IPV6 Disable 
+#          become: true
+#          shell:  |
+#                sudo sh -c "cat << EOF > /etc/systemd/network/99-free5gc.network
+#                [Match]
+#                Name=uptun
+#                [Network]
+#                Address=45.45.0.1/16
+#                EOF"
+#          when:  enable_ipv6 == 'false'
         
-        - name : IP address on TUN device. IPV6 Disable 
-          become: true
-          shell:  |
-                sudo systemctl enable systemd-networkd
-                sudo systemctl restart systemd-networkd
-                sudo apt-get -y install net-tools
+#        - name : IP address on TUN device. IPV6 Disable 
+#          become: true
+#          shell:  |
+#                sudo systemctl enable systemd-networkd
+#                sudo systemctl restart systemd-networkd
+#                sudo apt-get -y install net-tools
 
-        - name : Install AMF, SMF, UPF, HSS, and PCRF depedencies  
-          become: true
-          shell:  |
-                sudo apt-get -y install autoconf libtool gcc pkg-config git flex bison libsctp-dev libgnutls28-dev libgcrypt-dev libssl-dev libidn11-dev libmongoc-dev libbson-dev libyaml-dev
+#        - name : Install AMF, SMF, UPF, HSS, and PCRF depedencies  
+#          become: true
+#          shell:  |
+#                sudo apt-get -y install autoconf libtool gcc pkg-config git flex bison libsctp-dev libgnutls28-dev libgcrypt-dev libssl-dev libidn11-dev libmongoc-dev libbson-dev libyaml-dev
 
-        - name : Git clone free5GCore 
-          become: true
-          shell:  |
-                git clone https://bitbucket.org/nctu_5g/free5gc-stage-1.git
+#        - name : Git clone free5GCore 
+#          become: true
+#          shell:  |
+#                git clone https://bitbucket.org/nctu_5g/free5gc-stage-1.git
 
         - name : Compile free5GCore 
           shell:  |
