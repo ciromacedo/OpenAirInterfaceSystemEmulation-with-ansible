@@ -99,6 +99,17 @@
                 autoreconf -iv
                 ./configure --prefix=`pwd`/install
                 make -j `nproc`
+          args:
+            chdir: "free5gc-stage-1"
+
+        - name : Generate new Certs 
+          shell:  |
+                ./make_certs.sh . 
+          args:
+            chdir: "free5gc-stage-1/support/freeDiameter"
+
+        - name : Run Make Install 
+          shell:  |
                 make install
           args:
             chdir: "free5gc-stage-1"
