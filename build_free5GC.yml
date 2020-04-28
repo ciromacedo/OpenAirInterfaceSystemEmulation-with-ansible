@@ -83,3 +83,22 @@
                 sudo systemctl enable systemd-networkd
                 sudo systemctl restart systemd-networkd
                 sudo apt-get -y install net-tools
+
+        - name : Install AMF, SMF, UPF, HSS, and PCRF depedencies  
+          become: true
+          shell:  |
+                sudo apt-get -y install autoconf libtool gcc pkg-config git flex bison libsctp-dev libgnutls28-dev libgcrypt-dev libssl-dev libidn11-dev libmongoc-dev libbson-dev libyaml-dev
+
+        - name : Git clone free5GCore 
+          become: true
+          shell:  |
+                git clone https://bitbucket.org/nctu_5g/free5gc-stage-1.git
+
+        - name : Compile free5GCore 
+          shell:  |
+                autoreconf -iv
+                ./configure --prefix=`pwd`/install
+                make -j `nproc`
+                make install
+          args:
+            chdir: "free5gc-stage-1"
