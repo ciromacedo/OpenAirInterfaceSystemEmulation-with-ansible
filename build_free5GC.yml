@@ -407,7 +407,7 @@
         
         - name : Run All free5GC Functions 
           shell:  |
-                nohup ./free5gc-ngcd &
+                ./free5gc-ngcd &
           args:
             chdir: "{{ BASE_DIR_INSTALL }}/free5gc-stage-1"
 
@@ -418,15 +418,13 @@
                 sudo apt-get -y install nodejs
 
         - name : Install Web User Interface 
-          ignore_errors: true
           shell:  |
                 npm install
           args:
             chdir: "{{ BASE_DIR_INSTALL }}/free5gc-stage-1/webui"
 
         - name : Start Web App 
-          ignore_errors: true
           shell:  |
-                nohup npm run dev &
+                npm run dev &
           args:
             chdir: "{{ BASE_DIR_INSTALL }}/free5gc-stage-1/webui"
