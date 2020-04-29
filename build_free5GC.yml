@@ -44,10 +44,6 @@
                 go get -u -v "golang.org/x/net/http2"
                 go get -u -v "golang.org/x/sys/unix"
 
-        - name : Remove Golang dir in root
-          become: true
-          shell:  rm -rf go
-        
         - name : Write the configuration file for the TUN device 1/2
           become: true
           shell:  |
