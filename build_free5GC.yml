@@ -400,4 +400,4 @@
           shell:  |
                 npm install
           args:
-            chdir: "free5gc-stage-1/webui"
+            chdir: "{{ BASE_DIR_INSTALL }}/free5gc-stage-1/webui"
