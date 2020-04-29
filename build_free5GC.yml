@@ -17,6 +17,11 @@
           ignore_errors: true
           shell:  |
                 sudo rm -rf {{ BASE_DIR_INSTALL }}
+
+        - name : Create Install Directory
+          become: true
+          shell:  |
+                sudo mkdir {{ BASE_DIR_INSTALL }}
         
         - name : Install MongoDB 3.6.3
           become: true
@@ -97,9 +102,7 @@
                 sudo apt-get -y install autoconf libtool gcc pkg-config git flex bison libsctp-dev libgnutls28-dev libgcrypt-dev libssl-dev libidn11-dev libmongoc-dev libbson-dev libyaml-dev
 
         - name : Git clone free5GCore 
-          become: true
-          shell:  |
-                git clone https://bitbucket.org/nctu_5g/free5gc-stage-1.git
+          shell: git clone https://bitbucket.org/nctu_5g/free5gc-stage-1.git
           args:
             chdir: "{{ BASE_DIR_INSTALL }}"
 
