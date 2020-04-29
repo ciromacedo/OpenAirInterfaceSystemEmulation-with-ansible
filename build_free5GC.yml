@@ -113,20 +113,20 @@
                 ./configure --prefix=`pwd`/install
                 make -j `nproc`
           args:
-            chdir: "{{ BASE_DIR_INSTALL }} /free5gc-stage-1"
+            chdir: "{{ BASE_DIR_INSTALL }}/free5gc-stage-1"
 
         - name : Generate new Certs 
           shell:  |
                 ./make_certs.sh . 
           args:
-            chdir: "{{ BASE_DIR_INSTALL }} /free5gc-stage-1/support/freeDiameter"
+            chdir: "{{ BASE_DIR_INSTALL }}/free5gc-stage-1/support/freeDiameter"
 
         - name : Run Make Install 
           ignore_errors: true
           shell:  |
                 make install
           args:
-            chdir: "{{ BASE_DIR_INSTALL }} /free5gc-stage-1"
+            chdir: "{{ BASE_DIR_INSTALL }}/free5gc-stage-1"
 
         - name  : Core Network Configuration - remove free5gc.conf old file
           shell:  rm free5gc-stage-1/install/etc/free5gc/free5gc.conf 
@@ -135,7 +135,7 @@
 
         - name  : Core Network Configuration - Build free5gc.conf
           copy:
-            dest: "{{ BASE_DIR_INSTALL }} /free5gc-stage-1/install/etc/free5gc/free5gc.conf"
+            dest: "{{ BASE_DIR_INSTALL }}/free5gc-stage-1/install/etc/free5gc/free5gc.conf"
             content: |
                 db_uri: mongodb://localhost/free5gc
 
