@@ -399,12 +399,17 @@
                       - 2001:4860:4860::8888
                       - 2001:4860:4860::8844
 
-
         - name : Config Internal Network Environment Setting 
           shell:  |
                 sudo sh -c 'echo 1 > /proc/sys/net/ipv4/ip_forward'
                 sudo iptables -t nat -A POSTROUTING -o {{ physical_network_interface }} -j MASQUERADE
                 sudo iptables -I INPUT -i uptun -j ACCEPT
+        
+        - name : Run All free5GC Functions 
+          shell:  |
+                nohup ./free5gc-ngcd &
+          args:
+            chdir: "{{ BASE_DIR_INSTALL }}/free5gc-stage-1"
 
         - name : Install Node 
           shell:  |
@@ -416,5 +421,12 @@
           ignore_errors: true
           shell:  |
                 npm install
+          args:
+            chdir: "{{ BASE_DIR_INSTALL }}/free5gc-stage-1/webui"
+
+        - name : Start Web App 
+          ignore_errors: true
+          shell:  |
+                nohup npm run dev &
           args:
             chdir: "{{ BASE_DIR_INSTALL }}/free5gc-stage-1/webui"
