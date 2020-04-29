@@ -169,7 +169,8 @@
                 #  o Disable Stateless Address Autoconfiguration for IPv6
                 #      no_slaac: true
                 #                                                                                                                                                                                               #                                                                                                                                                                                               parameter:                                                                                                                                                                                          no_ipv6: true
-
+                parameter:
+                    no_ipv6: true
                 amf:
                     freeDiameter: amf.conf
                   
@@ -379,13 +380,14 @@
                       - addr: ::1
 
                     ue_pool:
-                      - addr: 45.45.0.1/16
-                      - addr: cafe::1/64
+                      - addr: 45.45.0.1/16                                                                                                                                                    - addr: cafe::1/64
 
                     dns:
                       - 8.8.8.8
-                      - 8.8.4.4                                                                                                                                                                                       - 2001:4860:4860::8888                                                                                                                                                                          - 2001:4860:4860::8844
-
+                      - 8.8.4.4
+                      - 2001:4860:4860::8888
+                      - 2001:4860:4860::8844
+                      
         - name : Config Internal Network Environment Setting 
           shell:  |
                 sudo sh -c 'echo 1 > /proc/sys/net/ipv4/ip_forward'
