@@ -406,8 +406,9 @@
                 sudo iptables -I INPUT -i uptun -j ACCEPT
         
         - name : Run All free5GC Functions 
-          shell:  |
-                ./free5gc-ngcd &
+          shell: nohup ./free5gc-ngcd &
+          async: 45
+          poll: 0
           args:
             chdir: "{{ BASE_DIR_INSTALL }}/free5gc-stage-1"
 
@@ -424,7 +425,8 @@
             chdir: "{{ BASE_DIR_INSTALL }}/free5gc-stage-1/webui"
 
         - name : Start Web App 
-          shell:  |
-                npm run dev &
+          shell:  nohup npm run dev &
+          async: 45
+          poll: 0
           args:
             chdir: "{{ BASE_DIR_INSTALL }}/free5gc-stage-1/webui"
