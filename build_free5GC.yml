@@ -113,19 +113,19 @@
                 ./configure --prefix=`pwd`/install
                 make -j `nproc`
           args:
-            chdir: "{{ BASE_DIR_INSTALL }}/free5gcore-configurations/free5gc-stage-1"
+            chdir: "{{ BASE_DIR_INSTALL }}/free5gcore-configurations/free5g-stage1"
 
         - name : Generate new Certs 
           shell:  |
                 ./make_certs.sh . 
           args:
-            chdir: "{{ BASE_DIR_INSTALL }}/free5gcore-configurations/free5gc-stage-1/support/freeDiameter"
+            chdir: "{{ BASE_DIR_INSTALL }}/free5gcore-configurations/free5g-stage1/support/freeDiameter"
 
         - name : Run Make Install 
           shell:  |
                 make install
           args:
-            chdir: "{{ BASE_DIR_INSTALL }}/free5gcore-configurations/free5gc-stage-1"
+            chdir: "{{ BASE_DIR_INSTALL }}/free5gcore-configurations/free5g-stage1"
 
         - name : Core Network Configuration - remove free5gc.conf old file
           shell:  rm free5gc-stage-1/install/etc/free5gc/free5gc.conf 
@@ -134,7 +134,7 @@
 
         - name : Core Network Configuration - Build free5gc.conf
           copy:
-            dest: "{{ BASE_DIR_INSTALL }}/free5gcore-configurations/free5gc-stage-1/install/etc/free5gc/free5gc.conf"
+            dest: "{{ BASE_DIR_INSTALL }}/free5gcore-configurations/free5g-stage1/install/etc/free5gc/free5gc.conf"
             content: |
                 db_uri: mongodb://localhost/free5gc
 
@@ -411,7 +411,7 @@
           async: 45
           poll: 0
           args:
-            chdir: "{{ BASE_DIR_INSTALL }}/free5gcore-configurations/free5gc-stage-1"
+            chdir: "{{ BASE_DIR_INSTALL }}/free5gcore-configurations/free5g-stage1"
           when: run_free5g_backgroud == 'true'
               
         - name : Install Node 
@@ -424,11 +424,11 @@
           shell:  |
                 npm install
           args:
-            chdir: "{{ BASE_DIR_INSTALL }}/free5gcore-configurations/free5gc-stage-1/webui"
+            chdir: "{{ BASE_DIR_INSTALL }}/free5gcore-configurations/free5g-stage1/webui"
 
         - name : Start Web App 
           shell:  nohup npm run dev &
           async: 45
           poll: 0
           args:
-            chdir: "{{ BASE_DIR_INSTALL }}/free5gcore-configurations/free5gc-stage-1/webui"
+            chdir: "{{ BASE_DIR_INSTALL }}/free5gcore-configurations/free5g-stage1/webui"
