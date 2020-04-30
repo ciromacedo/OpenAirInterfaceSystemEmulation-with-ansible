@@ -135,3 +135,14 @@ the expected result is similar display in the next figure:
 ansible-playbook   -vvvv   build_free5GC.yml  -i  hosts -e "physical_network_interface=<< physical network interface name>>"
 ```
 it will be start the process of deployment the elements of **enB/Ue's**. The ```-vvvv``` parameter controls the **verbosity level of log** and can be adjusted (```-v```, ```-vv```, ```-vvv``` or ```-vvvv```).
+
+### 6 - Execution
+Star enB:
+```
+sudo -E ./lte_build_oai/build/lte-softmodem -O ../ci-scripts/conf_files/rcc.band7.tm1.nfapi.conf
+```
+
+Star UE's:
+```
+./lte-uesoftmodem -O /root/ansible_ue/openairinterface5g/ci-scripts/conf_files/ue.nfapi.conf --L2-emul 3 --num-ues 1
+```
