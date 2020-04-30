@@ -116,6 +116,7 @@
             chdir: "{{ BASE_DIR_INSTALL }}/free5gcore-configurations/free5g-stage1"
 
         - name : Generate new Certs 
+          ignore_errors: true
           shell:  |
                 ./make_certs.sh . 
           args:
