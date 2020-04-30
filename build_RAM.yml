@@ -7,6 +7,7 @@
         build_with_dependecies: 'false'
         core_installation_ip_address: 'REPLACE_THIS_WITH_THE_CORE_INSTALLATION_IP_ADDRESS'
         num_ues: '1'
+        config_vm: 'false'
         BASE_DIR_INSTALL_ENB : "ansible_enB"
         BASE_DIR_INSTALL_UE : "ansible_ue"
         user_equiments:
@@ -118,7 +119,157 @@
         - fail: 
             msg: "'num_ues' not found, this parameter is required!"
           when: num_ues == ''
-          
+
+        - name : Remove grub default file
+          ignore_errors: true
+          shell:  | 
+                rm /etc/default/grub 
+          when: config_vm == 'true'
+
+        - name : Remove blacklist.conf default file
+          ignore_errors: true
+          shell:  | 
+                rm /etc/modprobe.d/blacklist.conf
+          when: config_vm == 'true' 
+        
+        - name : Remove cpufrequtils default file if exist
+          ignore_errors: true
+          shell:  | 
+                rm /etc/default/cpufrequtils 
+          when: config_vm == 'true'
+        
+        - name  : Generate new blacklist.conf file
+          copy:
+            dest: "/etc/modprobe.d/blacklist.conf"
+            content: |
+                # This file lists those modules which we don't want to be loaded by
+                # alias expansion, usually so some other driver will be loaded for the
+                # device instead.
+
+                # evbug is a debug tool that should be loaded explicitly
+                blacklist evbug
+
+                # these drivers are very simple, the HID drivers are usually preferred
+                blacklist usbmouse
+                blacklist usbkbd
+
+                # replaced by e100
+                blacklist eepro100
+
+                # replaced by tulip
+                blacklist de4x5
+
+                # causes no end of confusion by creating unexpected network interfaces
+                blacklist eth1394
+
+                # snd_intel8x0m can interfere with snd_intel8x0, doesn't seem to support much
+                # hardware on its own (Ubuntu bug #2011, #6810)
+                blacklist snd_intel8x0m
+
+                # Conflicts with dvb driver (which is better for handling this device)
+                blacklist snd_aw2
+
+                # Causes trackpads to stop working on Lenovo 11e 2nd gen (Ubuntu: #1802135)
+                # and Lenovo x240 to hang on boot (Ubuntu: #1802689)
+                blacklist i2c_i801
+
+                # replaced by p54pci
+                blacklist prism54
+
+                # replaced by b43 and ssb.
+                blacklist bcm43xx
+
+                # most apps now use garmin usb driver directly (Ubuntu: #114565)
+                blacklist garmin_gps
+
+                # replaced by asus-laptop (Ubuntu: #184721)
+                blacklist asus_acpi
+
+                # low-quality, just noise when being used for sound playback, causes
+                # hangs at desktop session start (Ubuntu: #246969)
+                blacklist snd_pcsp
+
+                # ugly and loud noise, getting on everyone's nerves; this should be done by a
+                # nice pulseaudio bing (Ubuntu: #77010)
+                blacklist pcspkr
+
+                # EDAC driver for amd76x clashes with the agp driver preventing the aperture
+                # from being initialised (Ubuntu: #297750). Blacklist so that the driver
+                # continues to build and is installable for the few cases where its
+                # really needed.
+                blacklist amd76x_edac
+
+                blacklist intel_powerclamp
+          when: config_vm == 'true'
+
+        - name  : Generate new grub file
+          copy:
+            dest: "/etc/default/grub"
+            content: |
+                # If you change this file, run 'update-grub' afterwards to update
+                # /boot/grub/grub.cfg.
+                # For full documentation of the options in this file, see:
+                #   info -f grub -n 'Simple configuration'
+
+                GRUB_DEFAULT=0
+                GRUB_HIDDEN_TIMEOUT=0
+                GRUB_HIDDEN_TIMEOUT_QUIET=true
+                GRUB_TIMEOUT=10
+                GRUB_DISTRIBUTOR=`lsb_release -i -s 2> /dev/null || echo Debian`
+                GRUB_CMDLINE_LINUX_DEFAULT="processor.max_cstate=1 intel_idle.max_cstate=0 idle=poll"
+                GRUB_CMDLINE_LINUX=""
+
+                # Uncomment to enable BadRAM filtering, modify to suit your needs
+                # This works with Linux (no patch required) and with any kernel that obtains
+                # the memory map information from GRUB (GNU Mach, kernel of FreeBSD ...)
+                #GRUB_BADRAM="0x01234567,0xfefefefe,0x89abcdef,0xefefefef"
+
+                # Uncomment to disable graphical terminal (grub-pc only)
+                #GRUB_TERMINAL=console
+
+                # The resolution used on graphical terminal
+                # note that you can use only modes which your graphic card supports via VBE
+                # you can see them in real GRUB with the command `vbeinfo'
+                #GRUB_GFXMODE=640x480
+
+                # Uncomment if you don't want GRUB to pass "root=UUID=xxx" parameter to Linux
+                #GRUB_DISABLE_LINUX_UUID=true
+
+                # Uncomment to disable generation of recovery mode menu entries
+                #GRUB_DISABLE_RECOVERY="true"
+
+                # Uncomment to get a beep at grub start
+                #GRUB_INIT_TUNE="480 440 1"
+          when: config_vm == 'true'
+
+        - name  : Install cpufrequtils
+          become: true
+          shell:  |
+                sudo apt-get install cpufrequtils -y
+                sudo apt-get install i7z -y
+          when: config_vm == 'true'
+
+        - name  : Generate new cpufrequtils file
+          copy:
+            dest: "/etc/default/cpufrequtils"
+            content: |
+                GOVERNOR="performance"
+          when: config_vm == 'true'
+
+        - name  : Update grub
+          shell: | 
+             update-grub
+             sudo update-rc.d ondemand disable
+             sudo /etc/init.d/cpufrequtils restart
+          when: config_vm == 'true'
+
+        - name  : Install git if not exist
+          apt:
+            name: git
+            state: present
+            update_cache: yes
+
+
         - name : Remove all old implantation
           become: true
           ignore_errors: true
@@ -488,7 +639,7 @@
                   };
               };
 
-        - name: Add User equipments
+        - name  : Add User equipments
           blockinfile:
             path: /root/{{ BASE_DIR_INSTALL_UE }}/openairinterface5g/openair3/NAS/TOOLS/ue_eurecom_test_sfr.conf
             block: |
