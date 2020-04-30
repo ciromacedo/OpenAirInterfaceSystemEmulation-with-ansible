@@ -6,6 +6,7 @@
         COPY_RIGHT: 'ciromacedo@gmail.com'
         build_with_dependecies: 'false'
         enable_ipv6: 'true'
+        run_free5g_backgroud: 'false'
         BASE_DIR_INSTALL : "ansible_free5GC"
     tasks:
         - fail: 
@@ -411,7 +412,8 @@
           poll: 0
           args:
             chdir: "{{ BASE_DIR_INSTALL }}/free5gc-stage-1"
-
+          when: run_free5g_backgroud == 'true'
+              
         - name : Install Node 
           shell:  |
                 sudo apt-get -y install curl

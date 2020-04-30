@@ -106,6 +106,9 @@
           - { ue_id: UE98 ,  msin: '0000000099' }
           - { ue_id: UE99 ,  msin: '0000000100' }
     tasks:
+        - fail: 
+            msg: "'core_installation_ip_address' not found, this parameter is required!"
+          when: core_installation_ip_address == ''
 
         - name: Add User equipments
           blockinfile:
