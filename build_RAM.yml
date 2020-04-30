@@ -282,7 +282,7 @@
                 sudo rm -rf {{ BASE_DIR_INSTALL_ENB }}
                 sudo rm -rf {{ BASE_DIR_INSTALL_UE }}
 
-        - name : Create enB Directory
+        - name  : Create enB Directory
           become: true
           shell:  |
                 sudo mkdir {{ BASE_DIR_INSTALL_ENB }}
