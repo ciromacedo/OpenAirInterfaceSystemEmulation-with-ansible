@@ -102,6 +102,8 @@
           shell:  |
                 sudo apt-get -y install autoconf libtool gcc pkg-config git flex bison libsctp-dev libgnutls28-dev libgcrypt-dev libssl-dev libidn11-dev libmongoc-dev libbson-dev libyaml-dev
 
+        # git clone https://github.com/ciromacedo/free5gc-stage-1.git
+        # git clone https://bitbucket.org/nctu_5g/free5gc-stage-1.git
         - name : Git clone free5GCore 
           shell: git clone https://github.com/ciromacedo/free5gc-stage-1.git
           args:
@@ -117,7 +119,8 @@
 
         - name : Generate new Certs 
           shell:  |
-                ./make_certs.sh . 
+              chmod u+x make_certs.sh   
+              ./make_certs.sh . 
           args:
             chdir: "{{ BASE_DIR_INSTALL }}/free5gc-stage-1/support/freeDiameter"
 
