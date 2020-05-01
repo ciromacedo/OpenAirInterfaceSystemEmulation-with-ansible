@@ -103,7 +103,7 @@
                 sudo apt-get -y install autoconf libtool gcc pkg-config git flex bison libsctp-dev libgnutls28-dev libgcrypt-dev libssl-dev libidn11-dev libmongoc-dev libbson-dev libyaml-dev
 
         - name : Git clone free5GCore 
-          shell: git clone https://bitbucket.org/nctu_5g/free5gc-stage-1.git
+          shell: git clone https://github.com/ciromacedo/free5gc-stage-1.git
           args:
             chdir: "{{ BASE_DIR_INSTALL }}"
 
