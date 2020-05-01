@@ -1,3 +1,4 @@
 *.log
+*.retry
 .vagrant/
 register_ues.sh
