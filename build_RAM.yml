@@ -783,3 +783,6 @@
             chdir: "{{ BASE_DIR_INSTALL_UE }}/openairinterface5g/cmake_targets/tools"
             executable: /bin/bash
         
+        - name  : IP a config
+          shell: ip a
+        
