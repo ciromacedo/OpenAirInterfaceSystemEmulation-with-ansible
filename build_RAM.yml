@@ -274,7 +274,7 @@
             state: present
             update_cache: yes
 
-        - name : Remove all old implantation
+        - name  : Remove all old implantation
           become: true
           ignore_errors: true
           shell:  |
@@ -782,3 +782,4 @@
           args:
             chdir: "{{ BASE_DIR_INSTALL_UE }}/openairinterface5g/cmake_targets/tools"
             executable: /bin/bash
+        
