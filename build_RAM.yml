@@ -777,7 +777,7 @@
           shell : |
               ./conf2uedata -c /root/{{ BASE_DIR_INSTALL_ENB }}/openairinterface5g/openair3/NAS/TOOLS/ue_eurecom_test_sfr.conf -o /root/{{ BASE_DIR_INSTALL_ENB }}/openairinterface5g/cmake_targets/lte_build_oai/build/
           args:
-            chdir: "{{ BASE_DIR_INSTALL_ENB }}/openairinterface5g/targets/bin" 
+            chdir: "{{ BASE_DIR_INSTALL_UE }}/openairinterface5g/targets/bin" 
           
         - name  : Init NAS UE Layer
           shell: source init_nas_s1 UE
