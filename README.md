@@ -137,12 +137,17 @@ ansible-playbook   -vvvv   build_free5GC.yml  -i  hosts -e "physical_network_int
 it will be start the process of deployment the elements of **enB/Ue's**. The ```-vvvv``` parameter controls the **verbosity level of log** and can be adjusted (```-v```, ```-vv```, ```-vvv``` or ```-vvvv```).
 
 ### 6 - Execution
-Star enB:
+Star free5GC (Base dir: ```/root/ansible_free5GC/free5gc-stage-1 ```):
+```
+./free5gc-ngcd
+```
+
+Star enB (Base dir: ```/root/ansible_enB/openairinterface5g/cmake_targets ```):
 ```
 sudo -E ./lte_build_oai/build/lte-softmodem -O ../ci-scripts/conf_files/rcc.band7.tm1.nfapi.conf
 ```
 
-Star UE's:
+Star UE's ( Base dir: ```/root/ansible_ue/openairinterface5g/cmake_targets/lte_build_oai/build```  ):
 ```
 ./lte-uesoftmodem -O /root/ansible_ue/openairinterface5g/ci-scripts/conf_files/ue.nfapi.conf --L2-emul 3 --num-ues 1
 ```
