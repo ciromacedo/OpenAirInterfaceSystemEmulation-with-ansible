@@ -40,7 +40,7 @@
 
         - name  : Remove docker old images
           shell:  |
-                docker container prune -y
+                docker container prune -f
                 docker image rm ciromacedo/free5gc-st1
                 docker image rm ciromacedo/free5gc-mongodb
                 docker image rm ciromacedo/free5gc-webui
