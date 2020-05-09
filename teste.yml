@@ -26,7 +26,11 @@
     tasks:
         - name  : Generate certificates inside containers
           shell : |
-                docker exec -ti {{ AMF_container_name }} bash
+                docker exec -ti {{ AMF_container_name }} bash 
+                chmod u+x /root/free5gc-stage-1/support/freeDiameter/make_certs.sh
+                /root/free5gc-stage-1/support/freeDiameter/make_certs.sh /root/free5gc-stage-1/support/freeDiameter/
+                cd /root/free5gc-stage-1 && make install
+
 
 
 
