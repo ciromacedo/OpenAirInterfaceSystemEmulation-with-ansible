@@ -34,9 +34,16 @@
                 apt-get update
                 apt-get install docker-ce -y
 
+        - name  : Remove docker old images
+          shell:  |
+                docker container prune
+                docker image rm ciromacedo/free5gc-st1
+                docker image rm ciromacedo/free5gc-mongodb
+                docker image rm ciromacedo/free5gc-webui
+                docker network rm {{ docker_custon_network_name }}
+
         - name  : Create Docker custom network
           shell:  | 
-                docker network rm {{ docker_custon_network_name }}            
                 docker network create --subnet={{ docker_custon_subnet_network }} --driver bridge {{ docker_custon_network_name }}            
  
         - name  : Up conteiners
