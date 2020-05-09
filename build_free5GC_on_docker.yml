@@ -18,6 +18,7 @@
     tasks:
         - name  : Remove old instalation
           shell:  |
+                rm -rf {{ BASE_DIR_INSTALL }}
                 apt-get remove docker docker-engine docker.io docker-ce -y
                 apt-get update
         
