@@ -68,7 +68,7 @@
                 docker run -ti -d --net {{ docker_custon_network_name }} --ip {{ ip_address_MONGO_DB }} --name {{ MONGO_DB_container_name }} ciromacedo/free5gc-mongodb bash
                 docker run -ti -d -p {{ web_interface_port_access }}:3000 --net {{ docker_custon_network_name }} --ip {{ ip_address_WEB_UI }} --name {{ WEB_UI_container_name }} ciromacedo/free5gc-webui bash
 
-        - name : Core Network Configuration - Build free5gc.conf
+        - name  : Core Network Configuration - Build free5gc.conf
           copy:
             dest: "{{ BASE_DIR_INSTALL }}/free5gc.conf"
             content: |
@@ -305,7 +305,7 @@
                     - 8.8.8.8
                     - 8.8.4.4
 
-        - name : Core Network Configuration - Build amf.conf
+        - name  : Core Network Configuration - Build amf.conf
           copy:
             dest: "{{ BASE_DIR_INSTALL }}/amf.conf"
             content: |
@@ -578,7 +578,7 @@
                     
                     ##############################################################
                     
-        - name : Copy config file's to container's 
+        - name  : Copy config file's to container's 
           shell: |
                 docker cp ./free5gc.conf {{ AMF_container_name }}:/root/free5gc-stage-1/install/etc/free5gc/free5gc.conf
                 docker cp ./free5gc.conf {{ SMF_container_name }}:/root/free5gc-stage-1/install/etc/free5gc/free5gc.conf
@@ -590,7 +590,7 @@
             chdir: "{{ BASE_DIR_INSTALL }}"
 
         - name  : Clear file instalation
-          shell:  rm -rf {{ BASE_DIR_INSTALL }}
+          shell : rm -rf {{ BASE_DIR_INSTALL }}
 
 
 
