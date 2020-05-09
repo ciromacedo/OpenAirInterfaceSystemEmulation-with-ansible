@@ -34,22 +34,11 @@
           shell:  |
                 mkdir {{ BASE_DIR_INSTALL }}
         
-        - name  : Make config.sh
-          copy:
-            dest: "{{ BASE_DIR_INSTALL }}/config.sh"
-            content: |
-                #bin/bash
-
-                echo {{ ip_address_MONGO_DB }} mongodb-svc >> /etc/hosts
-                chmod u+x /root/free5gc-stage-1/support/freeDiameter/make_certs.sh
-                /root/free5gc-stage-1/support/freeDiameter/make_certs.sh /root/free5gc-stage-1/support/freeDiameter/
-                cd /root/free5gc-stage-1 && make install
-
         - name  : Core Network Configuration - Build free5gc.conf
           copy:
             dest: "{{ BASE_DIR_INSTALL }}/free5gc.conf"
             content: |
-                db_uri: mongodb://{{ ip_address_MONGO_DB }}/free5gc
+                db_uri: mongodb://{{ MONGO_DB_container_name }}/free5gc
                 logger:
                     file: /root/free5gc-stage-1/install/var/log/free5gc/free5gc.log
                     trace: 
