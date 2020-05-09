@@ -591,6 +591,7 @@
 
         - name  : Start conteiners
           shell:  |
+                  docker exec {{ MONGO_DB_container_name }} /bin/sh -c "/etc/init.d/mongodb start"
                   docker exec {{ AMF_container_name }} /bin/sh -c "chmod u+x /root/free5gc-stage-1/build_certs.sh"
                   docker exec {{ AMF_container_name }} /bin/sh -c "/root/free5gc-stage-1/build_certs.sh"
                   docker exec {{ SMF_container_name }} /bin/sh -c "chmod u+x /root/free5gc-stage-1/build_certs.sh"
