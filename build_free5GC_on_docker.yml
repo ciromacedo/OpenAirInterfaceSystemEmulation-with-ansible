@@ -22,8 +22,8 @@
                 sudo apt-get update
         
         - name : Install Docker-CE and other requirements
-            become: true
-            shell:  |
+          become: true
+          shell:  |
                 curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
 
                 sudo add-apt-repository \
@@ -34,12 +34,12 @@
                     sudo apt-get install docker-ce -y
 
         - name : Create Docker custom network
-            become: true
-            shell:  docker network create --subnet={{ docker_custon_subnet_network }} --driver bridge {{ docker_custon_network_name }}            
+          become: true
+          shell:  docker network create --subnet={{ docker_custon_subnet_network }} --driver bridge {{ docker_custon_network_name }}            
  
         - name : Up conteiners
-            become: true
-            shell:  |
+          become: true
+          shell:  |
                 docker run -ti -d --privileged --net {{ docker_custon_network_name }} --ip {{ ip_address_AMF }} --name amf ciromacedo/free5gc-st1 bash
                 docker run -ti -d --privileged --net {{ docker_custon_network_name }} --ip {{ ip_address_SMF }} --name smf ciromacedo/free5gc-st1 bash
                 docker run -ti -d --privileged --net {{ docker_custon_network_name }} --ip {{ ip_address_HSS }} --name hss ciromacedo/free5gc-st1 bash
