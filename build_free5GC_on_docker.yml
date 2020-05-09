@@ -9,13 +9,16 @@
         run_free5g_backgroud: 'false'
         BASE_DIR_INSTALL : "ansible_free5GC"
     tasks:
-        - name : Remove all old implantation
+        - name : Install Docker-CE
           become: true
-          ignore_errors: true
           shell:  |
-                sudo rm -rf {{ BASE_DIR_INSTALL }}
+                sudo apt-get remove docker docker-engine docker.io
+                sudo apt-get update
+                curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
 
-        - name : Create Install Directory
-          become: true
-          shell:  |
-                sudo mkdir {{ BASE_DIR_INSTALL }}
+                sudo add-apt-repository \
+            "deb [arch=amd64] https://download.docker.com/linux/ubuntu \
+            $(lsb_release -cs) \
+            stable"
+                sudo apt-get update
+                sudo apt-get install docker-ce -y
