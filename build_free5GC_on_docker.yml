@@ -1,0 +1,21 @@
+---
+-   hosts: free5g-CORE
+    become: yes
+    remote_user: root
+    vars:
+        COPY_RIGHT: 'ciromacedo@gmail.com'
+        build_with_dependecies: 'false'
+        enable_ipv6: 'true'
+        run_free5g_backgroud: 'false'
+        BASE_DIR_INSTALL : "ansible_free5GC"
+    tasks:
+        - name : Remove all old implantation
+          become: true
+          ignore_errors: true
+          shell:  |
+                sudo rm -rf {{ BASE_DIR_INSTALL }}
+
+        - name : Create Install Directory
+          become: true
+          shell:  |
+                sudo mkdir {{ BASE_DIR_INSTALL }}
