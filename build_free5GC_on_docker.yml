@@ -568,7 +568,7 @@
           shell:  | 
                 docker network create --subnet={{ docker_custon_subnet_network }} --driver bridge {{ docker_custon_network_name }}            
  
-        - name  : Up conteiners
+        - name  : Run conteiners
           shell:  |
                 docker run -ti -d --privileged --net {{ docker_custon_network_name }} --ip {{ ip_address_AMF }} --name {{ AMF_container_name }} ciromacedo/free5gc-st1 bash 
                 docker run -ti -d --privileged --net {{ docker_custon_network_name }} --ip {{ ip_address_SMF }} --name {{ SMF_container_name }} ciromacedo/free5gc-st1 bash 
@@ -589,8 +589,21 @@
           args:
             chdir: "{{ BASE_DIR_INSTALL }}"
 
- #       - name  : Clear file instalation
- #         shell : rm -rf {{ BASE_DIR_INSTALL }}
+        - name  : Start conteiners
+          shell:  |
+                  docker exec {{ AMF_container_name }} /bin/sh -c "chmod u+x /root/free5gc-stage-1/build_certs.sh"
+                  docker exec {{ AMF_container_name }} /bin/sh -c "/root/free5gc-stage-1/build_certs.sh"
+                  docker exec {{ SMF_container_name }} /bin/sh -c "chmod u+x /root/free5gc-stage-1/build_certs.sh"
+                  docker exec {{ SMF_container_name }} /bin/sh -c "/root/free5gc-stage-1/build_certs.sh"
+                  docker exec {{ HSS_container_name }} /bin/sh -c "chmod u+x /root/free5gc-stage-1/build_certs.sh"
+                  docker exec {{ HSS_container_name }} /bin/sh -c "/root/free5gc-stage-1/build_certs.sh"
+                  docker exec {{ PCRF_container_name }} /bin/sh -c "chmod u+x /root/free5gc-stage-1/build_certs.sh"
+                  docker exec {{ PCRF_container_name }} /bin/sh -c "/root/free5gc-stage-1/build_certs.sh"
+                  docker exec {{ UPF_container_name }} /bin/sh -c "chmod u+x /root/free5gc-stage-1/build_certs.sh"
+                  docker exec {{ UPF_container_name }} /bin/sh -c "/root/free5gc-stage-1/build_certs.sh"
+   
+        - name  : Clear file instalation
+          shell : rm -rf {{ BASE_DIR_INSTALL }}
 
 
 
