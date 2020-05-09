@@ -306,9 +306,9 @@
                     - 8.8.4.4
 
         - name : Core Network Configuration - Build amf.conf
-            copy:
-                dest: "{{ BASE_DIR_INSTALL }}/amf.conf"
-                content: |
+          copy:
+            dest: "{{ BASE_DIR_INSTALL }}/amf.conf"
+            content: |
                     # This is a sample configuration file for freeDiameter daemon.
                     
                     # Most of the options can be omitted, as they default to reasonable values.
