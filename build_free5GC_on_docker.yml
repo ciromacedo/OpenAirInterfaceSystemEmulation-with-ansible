@@ -43,8 +43,7 @@
                 echo {{ ip_address_MONGO_DB }} mongodb-svc >> /etc/hosts
                 chmod u+x /root/free5gc-stage-1/support/freeDiameter/make_certs.sh
                 /root/free5gc-stage-1/support/freeDiameter/make_certs.sh /root/free5gc-stage-1/support/freeDiameter/
-                cd /root/free5gc-stage-1
-                make install
+                cd /root/free5gc-stage-1 && make install
 
         - name  : Core Network Configuration - Build free5gc.conf
           copy:
@@ -601,8 +600,8 @@
           args:
             chdir: "{{ BASE_DIR_INSTALL }}"
 
-        - name  : Clear file instalation
-          shell : rm -rf {{ BASE_DIR_INSTALL }}
+ #       - name  : Clear file instalation
+ #         shell : rm -rf {{ BASE_DIR_INSTALL }}
 
 
 
