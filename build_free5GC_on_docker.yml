@@ -22,7 +22,6 @@
                 sudo apt-get update
         
         - name  : Install Docker-CE and other requirements
-          become: true
           shell:  |
                 curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
 
@@ -34,7 +33,9 @@
                     sudo apt-get install docker-ce -y
 
         - name  : Create Docker custom network
-          shell:  docker network create --subnet={{ docker_custon_subnet_network }} --driver bridge {{ docker_custon_network_name }}            
+          shell:  | 
+                docker network rm {{ docker_custon_network_name }}            
+                docker network create --subnet={{ docker_custon_subnet_network }} --driver bridge {{ docker_custon_network_name }}            
  
         - name  : Up conteiners
           shell:  |
