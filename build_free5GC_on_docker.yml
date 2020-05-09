@@ -4,21 +4,46 @@
     remote_user: root
     vars:
         COPY_RIGHT: 'ciromacedo@gmail.com'
-        build_with_dependecies: 'false'
-        enable_ipv6: 'true'
-        run_free5g_backgroud: 'false'
-        BASE_DIR_INSTALL : "ansible_free5GC"
+        docker_custon_subnet_network: '192.188.2.0/24'
+        docker_custon_network_name: 'free5gc'
+        web_interface_port_access: '8080'
+        ip_address_AMF: '192.188.2.2'
+        ip_address_SMF: '192.188.2.3'
+        ip_address_HSS: '192.188.2.4'
+        ip_address_PCRF: '192.188.2.5'
+        ip_address_UPF: '192.188.2.6'
+        ip_address_MONGO_DB: '192.188.2.100'
+        ip_address_WEB_UI: '192.188.2.101'
     tasks:
-        - name : Install Docker-CE
+        - name : Remove old instalation
           become: true
           shell:  |
                 sudo apt-get remove docker docker-engine docker.io
                 sudo apt-get update
+        
+        - name : Install Docker-CE and other requirements
+            become: true
+            shell:  |
                 curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
 
                 sudo add-apt-repository \
-            "deb [arch=amd64] https://download.docker.com/linux/ubuntu \
-            $(lsb_release -cs) \
-            stable"
-                sudo apt-get update
-                sudo apt-get install docker-ce -y
+                "deb [arch=amd64] https://download.docker.com/linux/ubuntu \
+                $(lsb_release -cs) \
+                stable"
+                    sudo apt-get update
+                    sudo apt-get install docker-ce -y
+
+        - name : Create Docker custom network
+            become: true
+            shell:  docker network create --subnet={{ docker_custon_subnet_network }} --driver bridge {{ docker_custon_network_name }}            
+ 
+        - name : Up conteiners
+            become: true
+            shell:  |
+                docker run -ti -d --privileged --net {{ docker_custon_network_name }} --ip {{ ip_address_AMF }} --name amf ciromacedo/free5gc-st1 bash
+                docker run -ti -d --privileged --net {{ docker_custon_network_name }} --ip {{ ip_address_SMF }} --name smf ciromacedo/free5gc-st1 bash
+                docker run -ti -d --privileged --net {{ docker_custon_network_name }} --ip {{ ip_address_HSS }} --name hss ciromacedo/free5gc-st1 bash
+                docker run -ti -d --privileged --net {{ docker_custon_network_name }} --ip {{ ip_address_PCRF }} --name pcrf ciromacedo/free5gc-st1 bash
+                docker run -ti -d --privileged --net {{ docker_custon_network_name }} --ip {{ ip_address_UPF }} --name upf ciromacedo/free5gc-st1 bash
+                docker run -ti -d --net {{ docker_custon_network_name }} --ip {{ ip_address_MONGO_DB }} --name mongodb ciromacedo/free5gc-mongodb bash
+                docker run -ti -d -p {{ web_interface_port_access }}:3000 --net {{ docker_custon_network_name }} --ip {{ ip_address_WEB_UI }} --name webui ciromacedo/free5gc-webui bash
