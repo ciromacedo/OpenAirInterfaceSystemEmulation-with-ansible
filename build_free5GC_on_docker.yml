@@ -22,6 +22,10 @@
                 apt-get remove docker docker-engine docker.io docker-ce -y
                 apt-get update
         
+        - name  : Create dir instalation
+          shell:  |
+                mkdir {{ BASE_DIR_INSTALL }}
+        
         - name  : Install Docker-CE and other requirements
           shell:  |
                 curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
