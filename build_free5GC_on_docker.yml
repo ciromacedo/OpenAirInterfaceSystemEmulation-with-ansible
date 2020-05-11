@@ -602,6 +602,10 @@
                   docker exec {{ PCRF_container_name }} /bin/sh -c "/root/free5gc-stage-1/build_certs.sh"
                   docker exec {{ UPF_container_name }} /bin/sh -c "chmod u+x /root/free5gc-stage-1/build_certs.sh"
                   docker exec {{ UPF_container_name }} /bin/sh -c "/root/free5gc-stage-1/build_certs.sh"
+
+        - name  : Start Web App
+          shell:  |
+                  docker exec {{ WEB_UI_container_name }} /bin/sh -c "cd /root/free5gc-stage-1/webui && npm run dev"
    
         - name  : Clear file instalation
           shell : rm -rf {{ BASE_DIR_INSTALL }}
