@@ -1,4 +1,5 @@
 $install_ANSIBLE = <<-SCRIPT
+    apt-get update && apt-get install -y  git vim nano net-tools cmake g++ kmod linux-headers-`4.4.0-178-lowlatency` sudo
     sudo apt-add-repository -y ppa:ansible/ansible-2.7
     sudo apt update
     sudo apt-get install ansible -y
@@ -12,6 +13,8 @@ $install_ANSIBLE = <<-SCRIPT
     sudo apt-get update
     sudo apt-get install docker-ce -y
     sudo usermod -aG docker $(whoami)
+    sudo curl -L https://github.com/docker/compose/releases/download/1.21.2/docker-compose-`uname -s`-`uname -m` -o /usr/local/bin/docker-compose
+    sudo chmod +x /usr/local/bin/docker-compose
 SCRIPT
 
 $install_FREE5G = <<-SCRIPT
@@ -77,7 +80,7 @@ Vagrant.configure("2") do |vm_conf|
         config.vm.network "private_network", ip:  "192.168.50.11"
         config.vm.provision "shell", inline: $install_ANSIBLE
     end
-
+    
    #free5g
    vm_conf.vm.define "free5g" do |config|
         config.vm.provider "virtualbox"

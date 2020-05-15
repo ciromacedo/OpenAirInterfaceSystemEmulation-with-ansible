@@ -117,10 +117,6 @@
           - { ue_id: UE98 ,  msin: '0000000099' }
           - { ue_id: UE99 ,  msin: '0000000100' }
     tasks:
-        - fail: 
-            msg: "'physical_network_interface' not found, this parameter is required!"
-          when: physical_network_interface == ''
-       
         - name : Remove grub default file
           ignore_errors: true
           shell:  | 
