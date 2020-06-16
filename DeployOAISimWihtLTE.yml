@@ -6,6 +6,7 @@
     vars:
         BASE_DIR_INSTALL: '/root/oaisim-4g-install'
         clear_file_instalation: 'true'
+        hss_host_url: 'hss.openair4G.eur'
         
         user_equiments:
             - { ue_id: UE0 ,   msin: '0000000001' }
@@ -50,8 +51,10 @@
 
         - name : Add hss reference into hosts file
           shell: |
-            sed -i "127.0.1.1  hss.openair4G.eur hss" /etc/hosts
-          
+            echo "127.0.1.1  {{ hss_host_url }} hss" >> /etc/hosts
           
 
-              
+        - name : Build hss cert's
+          shell: ./check_hss_s6a_certificate /usr/local/etc/oai/freeDiameter/ {{ hss_host_url }}
+          args:
+              chdir: "{{ BASE_DIR_INSTALL }}/openair-cn/scripts/"     
