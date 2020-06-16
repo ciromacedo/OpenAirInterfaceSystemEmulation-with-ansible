@@ -1,5 +1,5 @@
-[oaisim-RAM]
-161.35.59.33
+[OAISim-with-free5gc]
+<deployment-environment-IP-address>
 
-[free5g-CORE]
-167.71.146.128
+[OAISim-LTE]
+<deployment-environment-IP-address>
