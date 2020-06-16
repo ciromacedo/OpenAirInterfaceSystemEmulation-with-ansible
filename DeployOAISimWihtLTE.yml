@@ -58,3 +58,10 @@
           shell: ./check_hss_s6a_certificate /usr/local/etc/oai/freeDiameter/ {{ hss_host_url }}
           args:
               chdir: "{{ BASE_DIR_INSTALL }}/openair-cn/scripts/"     
+
+        - name : Build hss --clean --debug
+          shell: ./build_hss --clean --debug
+          args:
+              chdir: "{{ BASE_DIR_INSTALL }}/openair-cn/scripts/"  
+
+              
