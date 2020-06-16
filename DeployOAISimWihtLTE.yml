@@ -36,8 +36,8 @@
           args  :
               chdir: "{{ BASE_DIR_INSTALL }}"
 
-        - name : Build hss -i -F -v
-          shell: ./build_hss -i -F -v
+        - name : Build hss -i -F
+          shell: ./build_hss -i -F
           args:
               chdir: "{{ BASE_DIR_INSTALL }}/openair-cn/scripts/"
 
