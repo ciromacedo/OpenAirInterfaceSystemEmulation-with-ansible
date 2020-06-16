@@ -40,3 +40,18 @@
           shell: ./build_hss -i -F -v
           args:
               chdir: "{{ BASE_DIR_INSTALL }}/openair-cn/scripts/"
+
+
+        - name : Build hss without '-i'
+          shell: ./build_hss
+          args:
+              chdir: "{{ BASE_DIR_INSTALL }}/openair-cn/scripts/"
+
+
+        - name : Add hss reference into hosts file
+          shell: |
+            sed -i "127.0.1.1  hss.openair4G.eur hss" /etc/hosts
+          
+          
+
+              
