@@ -42,7 +42,7 @@
         - name  : Environment validation!
           assert:
             that:
-              - ansible_memtotal_mb >= 2048
+              - ansible_memtotal_mb >= 1048
             msg: "Minimum memory requirements in the deployment environment is 4GB! Operation failed!"
 
         - name  : Remove old instalation Dir
@@ -812,7 +812,7 @@
               #sim3,mil,901700000028083,ce00662d50b361c3442384ec4dce8718,opc,892deabd195d465cbd9cfc4937222c4c,8083,000000280858,7,dynamic
               #sim4,mil,901700000028084,a191f0aa8e9927aa10d19f9ffbffdae3,opc,b50406aa4a63646d1c49c159006e59f3,8084,000000280845,7,dynamic
               #sim5,mil,901700000028085,39514fdfccbe9295f7d04c2580566fe2,opc,cd28c6a874a57a5e654b68172aad08dc,8085,000000280852,7,dynamic
-              UE0,  mil,208930000000001,00112233445566778899aabbccddeeff,opc,63bfa50ee6523365ff14c1f45f88737d,8000,000000001234,7,dynamic
+              UE0,  mil,208930000000001,{{ USIM_API_K }},opc,{{ OPC }},8000,000000001234,7,dynamic
 
         - name  : srsLTE configuration - Build srsepc_if_masq.sh file
           copy  :
