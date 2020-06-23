@@ -28,12 +28,6 @@
         
         user_equiments:
             - { ue_id: UE0 ,   msin: '0000000001' }
-            - { ue_id: UE1 ,   msin: '0000000002' }
-            - { ue_id: UE2 ,   msin: '0000000003' }
-            - { ue_id: UE3 ,   msin: '0000000004' }
-            - { ue_id: UE4 ,   msin: '0000000005' }
-            - { ue_id: UE5 ,   msin: '0000000006' }
-            - { ue_id: UE6 ,   msin: '0000000007' }
     tasks:
         - fail: 
             msg: "'physical_network_interface' not found, this parameter is required!"
@@ -54,7 +48,7 @@
             path: "{{ BASE_DIR_INSTALL }}"
             state: directory
 
-        - name  : OpenAirInterface UE configuration - Build ue_eurecom_test_sfr.conf 1/2
+        - name  : Open5GS-LTE User Equipment configuration - Build ue_eurecom_test_sfr.conf 1/2
           copy:
             dest: "{{ BASE_DIR_INSTALL }}/ue_eurecom_test_sfr.conf"
             content: |
@@ -136,7 +130,7 @@
                     };
                 };
 
-        - name  : OpenAirInterface UE configuration - Build ue_eurecom_test_sfr.conf  2/2
+        - name  : Open5GS-LTE User Equipment configuration - Build ue_eurecom_test_sfr.conf  2/2
           blockinfile:
             path: /{{ BASE_DIR_INSTALL }}/ue_eurecom_test_sfr.conf
             block: |
@@ -166,7 +160,7 @@
           loop_control:
             index_var: ue_idx
 
-        - name  : OpenAirInterface UE configuration - Build ue.nfapi.conf 
+        - name  : Open5GS-LTE User Equipment configuration - Build ue.nfapi.conf 
           copy:
             dest: "{{ BASE_DIR_INSTALL }}/ue.nfapi.conf"
             content: |
@@ -215,7 +209,7 @@
                     }		      
                 );
 
-        - name  : OpenAirInterface eNB configuration - Build rcc.band7.tm1.nfapi.conf
+        - name  : Open5GS-LTE eNB configuration - Build rcc.band7.tm1.nfapi.conf
           copy  :
             dest: "{{ BASE_DIR_INSTALL }}/rcc.band7.tm1.nfapi.conf"
             content: |
@@ -471,7 +465,7 @@
                     rrc_log_verbosity                     ="medium";
                 };
 
-        - name  : srsLTE configuration - Build epc.conf file
+        - name  : Open5GS-LTE configuration - Build epc.conf file
           copy:
             dest: "{{ BASE_DIR_INSTALL }}/epc.conf"
             content: |
@@ -582,7 +576,7 @@
               #spgw_level = debug
               #hss_level = debug
 
-        - name  : srsLTE configuration - Build enb.conf file
+        - name  : Open5GS-LTE configuration - Build enb.conf file
           copy:
             dest: "{{ BASE_DIR_INSTALL }}/enb.conf"
             content: |
@@ -812,7 +806,7 @@
               #sim3,mil,901700000028083,ce00662d50b361c3442384ec4dce8718,opc,892deabd195d465cbd9cfc4937222c4c,8083,000000280858,7,dynamic
               #sim4,mil,901700000028084,a191f0aa8e9927aa10d19f9ffbffdae3,opc,b50406aa4a63646d1c49c159006e59f3,8084,000000280845,7,dynamic
               #sim5,mil,901700000028085,39514fdfccbe9295f7d04c2580566fe2,opc,cd28c6a874a57a5e654b68172aad08dc,8085,000000280852,7,dynamic
-              UE0,  mil,208930000000001,{{ USIM_API_K }},opc,{{ OPC }},8000,000000001234,7,dynamic
+              UE0,mil,208930000000001,{{ USIM_API_K }},opc,{{ OPC }},8000,000000001234,7,dynamic
 
         - name  : srsLTE configuration - Build srsepc_if_masq.sh file
           copy  :
