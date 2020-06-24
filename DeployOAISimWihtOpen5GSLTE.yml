@@ -764,20 +764,6 @@
         - pause :
             seconds: 3
 
-        - name  : Run PGW simulation process 
-          shell : docker exec -it -d {{ EPC_container_name }} /bin/sh -c "{{ path_workspace_open5gs }}/install/bin/open5gs-pgwd -D"
-          when  : init_epc == 'true'
-
-        - pause :
-            seconds: 3
-
-        - name  : Run SGW simulation process 
-          shell : docker exec -it -d {{ EPC_container_name }} /bin/sh -c "{{ path_workspace_open5gs }}/install/bin/open5gs-sgwd -D"
-          when  : init_epc == 'true'
-
-        - pause :
-            seconds: 3
-
         - name  : Run HSS simulation process 
           shell : docker exec -it -d {{ EPC_container_name }} /bin/sh -c "{{ path_workspace_open5gs }}/install/bin/open5gs-hssd -D"
           when  : init_epc == 'true'
@@ -842,9 +828,23 @@
         - name  : Config conf2uedata inside UE container 
           shell : docker exec {{ UE_container_name }} /bin/sh -c "cd /{{ UE_folder_name_container_name }}/targets/bin && sudo ./conf2uedata -c /{{ UE_folder_name_container_name }}/openair3/NAS/TOOLS/ue_eurecom_test_sfr.conf -o /{{ UE_folder_name_container_name }}/cmake_targets/ran_build/build/"
 
+        - name  : Run PGW simulation process 
+          shell : docker exec -it -d {{ EPC_container_name }} /bin/sh -c "{{ path_workspace_open5gs }}/install/bin/open5gs-pgwd -D"
+          when  : init_epc == 'true'
+
+        - pause :
+            seconds: 5
+
+        - name  : Run SGW simulation process 
+          shell : docker exec -it -d {{ EPC_container_name }} /bin/sh -c "{{ path_workspace_open5gs }}/install/bin/open5gs-sgwd -D"
+          when  : init_epc == 'true'
+
         - name  : Clear file instalation
           shell : rm -rf {{ BASE_DIR_INSTALL }}
           when  : clear_file_instalation == 'true'
+
+        - pause :
+            seconds: 10
 
         - name  : Run OpenAirInterface eNB simulation process 
           shell : docker exec -it -d {{ ENB_container_name }} /bin/sh -c "cd /root/enb/cmake_targets/ran_build/build && sudo -E ./lte-softmodem -O /root/enb/ci-scripts/conf_files/rcc.band7.tm1.nfapi.conf > enb.log 2>&1"
