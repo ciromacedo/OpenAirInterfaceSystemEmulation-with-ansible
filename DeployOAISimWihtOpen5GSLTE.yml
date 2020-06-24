@@ -334,7 +334,7 @@
           shell : docker exec {{ EPC_container_name }} /bin/sh -c "{{ path_workspace_open5gs }}/iptables.sh"
         
         - name  : Run PCRF simulation process 
-          shell : docker exec -it {{ EPC_container_name }} /bin/sh -c "{{ path_workspace_open5gs }}/install/bin/open5gs-pcrfd -D"
+          shell : docker exec -it -d {{ EPC_container_name }} /bin/sh -c "{{ path_workspace_open5gs }}/install/bin/open5gs-pcrfd -D"
           when  : init_epc == 'true'
 
         - pause :
@@ -355,7 +355,7 @@
             seconds: 3
 
         - name  : Run HSS simulation process 
-          shell : docker exec -it {{ EPC_container_name }} /bin/sh -c "{{ path_workspace_open5gs }}/install/bin/open5gs-hssd -D"
+          shell : docker exec -it -d {{ EPC_container_name }} /bin/sh -c "{{ path_workspace_open5gs }}/install/bin/open5gs-hssd -D"
           when  : init_epc == 'true'
 
         - pause :
