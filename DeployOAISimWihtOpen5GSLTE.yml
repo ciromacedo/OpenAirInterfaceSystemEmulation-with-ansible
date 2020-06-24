@@ -307,7 +307,16 @@
 
         - name  : Remove default YAML file's from EPC container 
           shell : |
-                docker exec {{ EPC_container_name }} /bin/sh -c "rm -rf {{ path_workspace_open5gs }}/install/etc/open5gs/*.yaml"
+                docker exec {{ EPC_container_name }} /bin/sh -c "rm -rf {{ path_workspace_open5gs }}/install/etc/open5gs/amf.yaml"
+                docker exec {{ EPC_container_name }} /bin/sh -c "rm -rf {{ path_workspace_open5gs }}/install/etc/open5gs/ausf.yaml"
+                docker exec {{ EPC_container_name }} /bin/sh -c "rm -rf {{ path_workspace_open5gs }}/install/etc/open5gs/hss.yaml"
+                docker exec {{ EPC_container_name }} /bin/sh -c "rm -rf {{ path_workspace_open5gs }}/install/etc/open5gs/mme.yaml"
+                docker exec {{ EPC_container_name }} /bin/sh -c "rm -rf {{ path_workspace_open5gs }}/install/etc/open5gs/nrf.yaml"
+                docker exec {{ EPC_container_name }} /bin/sh -c "rm -rf {{ path_workspace_open5gs }}/install/etc/open5gs/pcrf.yaml"
+                docker exec {{ EPC_container_name }} /bin/sh -c "rm -rf {{ path_workspace_open5gs }}/install/etc/open5gs/smf.yaml"
+                docker exec {{ EPC_container_name }} /bin/sh -c "rm -rf {{ path_workspace_open5gs }}/install/etc/open5gs/udm.yaml"
+                docker exec {{ EPC_container_name }} /bin/sh -c "rm -rf {{ path_workspace_open5gs }}/install/etc/open5gs/udr.yaml"
+                docker exec {{ EPC_container_name }} /bin/sh -c "rm -rf {{ path_workspace_open5gs }}/install/etc/open5gs/upf.yaml"
 
         - name  : Copy custom YAML file's to EPC container 
           shell : |
