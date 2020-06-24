@@ -353,7 +353,7 @@
             seconds: 3
 
         - name  : Run MME simulation process 
-          shell : docker exec -it -d {{ EPC_container_name }} /bin/sh -c "{{ path_workspace_open5gs }}/install/bin/open5gs-mmed -D"
+          shell : docker exec -it -d {{ EPC_container_name }} /bin/sh -c "{{ path_workspace_open5gs }}/install/bin/open5gs-mmed"
           when  : init_epc == 'true'
         
         - name  : Wait for port WEB_UI response
