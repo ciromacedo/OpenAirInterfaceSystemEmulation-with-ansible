@@ -37,7 +37,7 @@
         init_enb: 'false'
         init_ue: 'false'
         init_epc: 'true'
-        num_ues_init_simulation: '2'
+        num_ues_init_simulation: '20'
         HPLMN : "20893"
         MSISDN : '33611123456'
         USIM_API_K : "8baf473f2f8fd09487cccbd7097c6862"
@@ -52,6 +52,60 @@
             - { ue_id: UE3 ,   msin: '0000000004' }
             - { ue_id: UE4 ,   msin: '0000000005' }
             - { ue_id: UE5 ,   msin: '0000000006' }
+            - { ue_id: UE6 ,   msin: '0000000007' }
+            - { ue_id: UE7 ,   msin: '0000000008' }
+            - { ue_id: UE8 ,   msin: '0000000009' }
+            - { ue_id: UE9 ,   msin: '0000000010' }
+            - { ue_id: UE10 ,  msin: '0000000011' }
+            - { ue_id: UE11 ,  msin: '0000000012' }
+            - { ue_id: UE12 ,  msin: '0000000013' }
+            - { ue_id: UE13 ,  msin: '0000000014' }
+            - { ue_id: UE14 ,  msin: '0000000015' }
+            - { ue_id: UE15 ,  msin: '0000000016' }
+            - { ue_id: UE16 ,  msin: '0000000017' }
+            - { ue_id: UE17 ,  msin: '0000000018' }
+            - { ue_id: UE18 ,  msin: '0000000019' }
+            - { ue_id: UE19 ,  msin: '0000000020' }
+            - { ue_id: UE20 ,  msin: '0000000021' }
+            - { ue_id: UE21 ,  msin: '0000000022' }
+            - { ue_id: UE22 ,  msin: '0000000023' }
+            - { ue_id: UE23 ,  msin: '0000000024' }
+            - { ue_id: UE24 ,  msin: '0000000025' }
+            - { ue_id: UE25 ,  msin: '0000000026' }
+            - { ue_id: UE26 ,  msin: '0000000027' }
+            - { ue_id: UE27 ,  msin: '0000000028' }
+            - { ue_id: UE28 ,  msin: '0000000029' }
+            - { ue_id: UE29 ,  msin: '0000000030' }
+            - { ue_id: UE30 ,  msin: '0000000031' }
+            - { ue_id: UE31 ,  msin: '0000000032' }
+            - { ue_id: UE32 ,  msin: '0000000033' }
+            - { ue_id: UE33 ,  msin: '0000000034' }
+            - { ue_id: UE34 ,  msin: '0000000035' }
+            - { ue_id: UE35 ,  msin: '0000000036' }
+            - { ue_id: UE36 ,  msin: '0000000037' }
+            - { ue_id: UE37 ,  msin: '0000000038' }
+            - { ue_id: UE38 ,  msin: '0000000039' }
+            - { ue_id: UE39 ,  msin: '0000000040' }
+            - { ue_id: UE40 ,  msin: '0000000041' }
+            - { ue_id: UE41 ,  msin: '0000000042' }
+            - { ue_id: UE42 ,  msin: '0000000043' }
+            - { ue_id: UE43 ,  msin: '0000000044' }
+            - { ue_id: UE44 ,  msin: '0000000045' }
+            - { ue_id: UE45 ,  msin: '0000000046' }
+            - { ue_id: UE46 ,  msin: '0000000047' }
+            - { ue_id: UE47 ,  msin: '0000000048' }
+            - { ue_id: UE48 ,  msin: '0000000049' }
+            - { ue_id: UE49 ,  msin: '0000000050' }
+            - { ue_id: UE50 ,  msin: '0000000051' }
+            - { ue_id: UE51 ,  msin: '0000000052' }
+            - { ue_id: UE52 ,  msin: '0000000053' }
+            - { ue_id: UE53 ,  msin: '0000000054' }
+            - { ue_id: UE54 ,  msin: '0000000055' }
+            - { ue_id: UE55 ,  msin: '0000000056' }
+            - { ue_id: UE56 ,  msin: '0000000057' }
+            - { ue_id: UE57 ,  msin: '0000000058' }
+            - { ue_id: UE58 ,  msin: '0000000059' }
+            - { ue_id: UE59 ,  msin: '0000000060' }
     tasks:
         - fail: 
             msg: "'physical_network_interface' not found, this parameter is required!"
