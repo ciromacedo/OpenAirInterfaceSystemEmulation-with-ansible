@@ -765,14 +765,14 @@
             seconds: 3
 
         - name  : Run PGW simulation process 
-          shell : docker exec -it {{ EPC_container_name }} /bin/sh -c "{{ path_workspace_open5gs }}/install/bin/open5gs-pgwd -D"
+          shell : docker exec -it -d {{ EPC_container_name }} /bin/sh -c "{{ path_workspace_open5gs }}/install/bin/open5gs-pgwd -D"
           when  : init_epc == 'true'
 
         - pause :
             seconds: 3
 
         - name  : Run SGW simulation process 
-          shell : docker exec -it {{ EPC_container_name }} /bin/sh -c "{{ path_workspace_open5gs }}/install/bin/open5gs-sgwd -D"
+          shell : docker exec -it -d {{ EPC_container_name }} /bin/sh -c "{{ path_workspace_open5gs }}/install/bin/open5gs-sgwd -D"
           when  : init_epc == 'true'
 
         - pause :
