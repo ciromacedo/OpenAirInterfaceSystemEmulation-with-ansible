@@ -37,7 +37,7 @@
         init_enb: 'false'
         init_ue: 'false'
         init_epc: 'true'
-        num_ues_init_simulation: '1'
+        num_ues_init_simulation: '2'
         HPLMN : "20893"
         MSISDN : '33611123456'
         USIM_API_K : "8baf473f2f8fd09487cccbd7097c6862"
