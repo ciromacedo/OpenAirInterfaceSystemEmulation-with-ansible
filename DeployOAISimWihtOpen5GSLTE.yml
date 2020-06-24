@@ -758,28 +758,28 @@
           shell : docker exec {{ EPC_container_name }} /bin/sh -c "{{ path_workspace_open5gs }}/iptables.sh"
         
         - name  : Run PCRF simulation process 
-          shell : docker exec -it -d {{ EPC_container_name }} /bin/sh -c "{{ path_workspace_open5gs }}/install/bin/open5gs-pcrfd -D"
+          shell : docker exec -it -d {{ EPC_container_name }} /bin/sh -c "{{ path_workspace_open5gs }}/install/bin/open5gs-pcrfd"
           when  : init_epc == 'true'
 
         - pause :
             seconds: 10
 
         - name  : Run PGW simulation process 
-          shell : docker exec -it -d {{ EPC_container_name }} /bin/sh -c "{{ path_workspace_open5gs }}/install/bin/open5gs-pgwd -D"
+          shell : docker exec -it -d {{ EPC_container_name }} /bin/sh -c "{{ path_workspace_open5gs }}/install/bin/open5gs-pgwd"
           when  : init_epc == 'true'
 
         - pause :
             seconds: 10
 
         - name  : Run SGW simulation process 
-          shell : docker exec -it -d {{ EPC_container_name }} /bin/sh -c "{{ path_workspace_open5gs }}/install/bin/open5gs-sgwd -D"
+          shell : docker exec -it -d {{ EPC_container_name }} /bin/sh -c "{{ path_workspace_open5gs }}/install/bin/open5gs-sgwd"
           when  : init_epc == 'true'
 
         - pause :
             seconds: 10
 
         - name  : Run HSS simulation process 
-          shell : docker exec -it -d {{ EPC_container_name }} /bin/sh -c "{{ path_workspace_open5gs }}/install/bin/open5gs-hssd -D"
+          shell : docker exec -it -d {{ EPC_container_name }} /bin/sh -c "{{ path_workspace_open5gs }}/install/bin/open5gs-hssd"
           when  : init_epc == 'true'
 
         - pause :
